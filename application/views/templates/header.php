@@ -119,9 +119,11 @@
             <span>Laporan</span></a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Laporan Master:</h6>
-            <a class="dropdown-item fa fa-user-circle" href="<?php echo base_url('page/cari'); ?>">Laporan Pengguna</a>
             <a class="dropdown-item fa fa-envelope" href="<?php echo base_url('page/cariCekMeteran'); ?>">Laporan Cek Meteran</a>
+            <a class="dropdown-item fa fa-user-circle" href="<?php echo base_url('page/cariPelanggan'); ?>">Laporan Pelanggan</a>
             <a class="dropdown-item fa fa-fw fa-folder" href="<?php echo base_url('page/cariPembayaran'); ?>">Laporan Pembayaran</a>
+            <a class="dropdown-item fa fa-user-circle" href="<?php echo base_url('page/cari'); ?>">Laporan Pengguna</a>
+            <a class="dropdown-item fa fa-user-circle" href="<?php echo base_url('page/cariZona'); ?>">Laporan Zona</a>
             </div>
       </li>   
       <li class="nav-item">

@@ -140,7 +140,7 @@ class UserModel extends CI_Model {
 		if($metode == "1"){
 			$this->db->like('nama', $keyword)->or_like('no_transaksi', $keyword); //mencari data yang serupa dengan keyword
 			return $this->db->get('pembayaran')->result();
-		}else{
+		}else if($metode != NULL){
 			if($metode == "Harian"){
 				$this->db->where('update_date', $tanggal);
 				return $this->db->get('pembayaran')->result();
@@ -155,11 +155,14 @@ class UserModel extends CI_Model {
 			}else{
 				return "GOING WRONG!!";
 			}
+		}else{
+			$this->db->like('nama', $keyword)->or_like('no_transaksi', $keyword); //mencari data yang serupa dengan keyword
+			return $this->db->get('pembayaran')->result();
 		}
 
 	    $this->load->library('pagination'); // Load librari paginationnya
 		
-		$config['base_url'] = base_url('page/pembayaran');
+		$config['base_url'] = base_url('page/pembayaran?metode=1');
 		$config['total_rows'] = $this->db->query($query)->num_rows();
 		$config['per_page'] = 5;
 		$config['uri_segment'] = 3;
@@ -206,11 +209,127 @@ class UserModel extends CI_Model {
 		return $data;
 	  }
 
+	  public function cariZona($keyword){
+		$this->db->like('zona', $keyword)->or_like('wilayah', $keyword); //mencari data yang serupa dengan keyword
+		return $this->db->get('zona')->result();
+
+	    $this->load->library('pagination'); // Load librari paginationnya
+		
+		$config['base_url'] = base_url('page/pembayaran?metode=1');
+		$config['total_rows'] = $this->db->query($query)->num_rows();
+		$config['per_page'] = 5;
+		$config['uri_segment'] = 3;
+		$config['num_links'] = 3;
+		
+		// Style Pagination
+		// Agar bisa mengganti stylenya sesuai class2 yg ada di bootstrap
+		$config['full_tag_open']   = '<ul class="pagination pagination-sm m-t-xs m-b-xs">';
+        $config['full_tag_close']  = '</ul>';
+        
+        $config['first_link']      = 'First'; 
+        $config['first_tag_open']  = '<li>';
+        $config['first_tag_close'] = '</li>';
+        
+        $config['last_link']       = 'Last'; 
+        $config['last_tag_open']   = '<li>';
+        $config['last_tag_close']  = '</li>';
+        
+        $config['next_link']       = '&nbsp;<i class="glyphicon glyphicon-menu-right"></i>&nbsp;'; 
+        $config['next_tag_open']   = '<li>';
+        $config['next_tag_close']  = '</li>';
+        
+        $config['prev_link']       = '&nbsp;<i class="glyphicon glyphicon-menu-left"></i>&nbsp;'; 
+        $config['prev_tag_open']   = '<li>';
+        $config['prev_tag_close']  = '</li>';
+        
+        $config['cur_tag_open']    = '<li class="active"><a href="#">';
+        $config['cur_tag_close']   = '</a></li>';
+         
+        $config['num_tag_open']    = '<li>';
+        $config['num_tag_close']   = '</li>';
+        // End style pagination
+		
+		$this->pagination->initialize($config); // Set konfigurasi paginationnya
+		
+		$page = ($this->uri->segment($config['uri_segment'])) ? $this->uri->segment($config['uri_segment']) : 0;
+		$query .= " LIMIT ".$page.", ".$config['per_page'];
+		
+		$data['limit'] = $config['per_page'];
+		$data['total_rows'] = $config['total_rows'];
+		$data['pagination'] = $this->pagination->create_links(); // Generate link pagination nya sesuai config diatas
+		$data['pembayaran'] = $this->db->query($query)->result();
+		
+		return $data;
+	  }
+
+	  public function cariPelanggan($keyword, $zonaCari){
+		if($zonaCari == 1){
+			$this->db->like('nama', $keyword)->or_like('no_pelanggan', $keyword); //mencari data yang serupa dengan keyword
+			return $this->db->get('pelanggan')->result();
+		}else if($zonaCari != NULL ){
+			$this->db->where('zona', $zonaCari);
+			return $this->db->get('pelanggan')->result();
+		}else{
+			$this->db->like('nama', $keyword)->or_like('no_pelanggan', $keyword); //mencari data yang serupa dengan keyword
+			return $this->db->get('pelanggan')->result();
+		}
+		
+	    $this->load->library('pagination'); // Load librari paginationnya
+		
+		$query = "SELECT * FROM pelanggan"; // Query untuk menampilkan semua data siswa
+		
+		$config['base_url'] = base_url('page/pengguna');
+		$config['total_rows'] = $this->db->query($query)->num_rows();
+		$config['per_page'] = 5;
+		$config['uri_segment'] = 3;
+		$config['num_links'] = 3;
+		
+		// Style Pagination
+		// Agar bisa mengganti stylenya sesuai class2 yg ada di bootstrap
+		$config['full_tag_open']   = '<ul class="pagination pagination-sm m-t-xs m-b-xs">';
+        $config['full_tag_close']  = '</ul>';
+        
+        $config['first_link']      = 'First'; 
+        $config['first_tag_open']  = '<li>';
+        $config['first_tag_close'] = '</li>';
+        
+        $config['last_link']       = 'Last'; 
+        $config['last_tag_open']   = '<li>';
+        $config['last_tag_close']  = '</li>';
+        
+        $config['next_link']       = '&nbsp;<i class="glyphicon glyphicon-menu-right"></i>&nbsp;'; 
+        $config['next_tag_open']   = '<li>';
+        $config['next_tag_close']  = '</li>';
+        
+        $config['prev_link']       = '&nbsp;<i class="glyphicon glyphicon-menu-left"></i>&nbsp;'; 
+        $config['prev_tag_open']   = '<li>';
+        $config['prev_tag_close']  = '</li>';
+        
+        $config['cur_tag_open']    = '<li class="active"><a href="#">';
+        $config['cur_tag_close']   = '</a></li>';
+         
+        $config['num_tag_open']    = '<li>';
+        $config['num_tag_close']   = '</li>';
+        // End style pagination
+		
+		$this->pagination->initialize($config); // Set konfigurasi paginationnya
+		
+		$page = ($this->uri->segment($config['uri_segment'])) ? $this->uri->segment($config['uri_segment']) : 0;
+		$query .= " LIMIT ".$page.", ".$config['per_page'];
+		
+		$data['limit'] = $config['per_page'];
+		$data['total_rows'] = $config['total_rows'];
+		$data['pagination'] = $this->pagination->create_links(); // Generate link pagination nya sesuai config diatas
+		$data['login'] = $this->db->query($query)->result();
+		
+		return $data;
+	  }
+
 	  public function cariCekMeteran($keyword, $metode, $tanggal){
 		if($metode == "1"){
 			$this->db->like('nama', $keyword)->or_like('tgl_cek', $keyword)->or_like('zona', $keyword); //mencari data yang serupa dengan keyword
 			return $this->db->get('checker')->result();
-		}else{
+		}else if($metode != NULL){
 			if($metode == "Harian"){
 				$this->db->where('tgl_cek', $tanggal);
 				return $this->db->get('checker')->result();
@@ -225,6 +344,9 @@ class UserModel extends CI_Model {
 			}else{
 				return "GOING WRONG!!";
 			}
+		}else{
+			$this->db->like('nama', $keyword)->or_like('tgl_cek', $keyword)->or_like('zona', $keyword); //mencari data yang serupa dengan keyword
+			return $this->db->get('checker')->result();
 		}
 
 	    $this->load->library('pagination'); // Load librari paginationnya

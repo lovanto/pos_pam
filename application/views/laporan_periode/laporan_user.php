@@ -10,12 +10,13 @@
    </style>
 </head>
 <body>
+  <div style="margin: 2rem;">
   <center><h5>Laporan Data Pengguna Aplikasi</h5></center>
   <br><br>
     <form action="<?php echo site_url('page/cari');?>" method="get">
-      <input type="text" name="cari" class="form-control " id="diprint"  placeholder="Cari Data" value="<?php echo (isset($_GET['cari'])) ? $_GET['cari'] : ''; ?>">
+      <input type="text" name="cari" class="form-control " id="diprint"  placeholder="Nama User atau Username" value="<?php echo (isset($_GET['cari'])) ? $_GET['cari'] : ''; ?>">
       <br>
-      <button type="submit" class="btn btn-primary btn-sm " id="diprint">Cari Data</button> 
+      <button type="submit" class="btn btn-primary" id="diprint">Cari Data</button> 
       <a href="<?php echo site_url('page/cari'); ?>" class="btn btn-danger" id="diprint" style="text-decoration:none; color: black;">Reset</a>
       <button href="#" onclick="myFunction()" target="_blank" type="submit" id="diprint" class="btn btn-info diprint">Cetak data</button>
     </form><center>
@@ -51,6 +52,6 @@
   <?php 
   echo $this->pagination->create_links();
   ?>
-
+  </div>
 </body>
 </html>

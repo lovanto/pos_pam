@@ -271,6 +271,26 @@ class Page extends MY_Controller {
     $this->load->view('laporan_periode/laporan_cek', $data); //menampilkan data yang sudah dicari
     $this->load->view('templates/footer');
   }
+  #untuk pencarian pelanggan
+  public function cariPelanggan(){
+    $keyword = $this->input->get('cari', TRUE); //mengambil nilai dari form input cari
+    $zonaCari = $this->input->get('zonaCari', TRUE);
+    $data['pelanggan'] = $this->UserModel->cariPelanggan($keyword, $zonaCari); //mencari data karyawan berdasarkan 
+    $this->load->view('templates/header');
+    // $this->load->view('templates/sidebar');
+    $this->load->view('laporan_periode/laporan_pelanggan', $data); //menampilkan data yang sudah dicari
+    $this->load->view('templates/footer');
+  }
+  #untuk pencarian pembayaran
+  public function cariZona(){
+    $keyword = $this->input->get('cari', TRUE); //mengambil nilai dari form input cari
+    $data['zona'] = $this->UserModel->cariZona($keyword); //mencari data pembayaran berdasarkan 
+    // $data['login'] = $this->UserModel->view();
+    $this->load->view('templates/header');
+    // $this->load->view('templates/sidebar');
+    $this->load->view('laporan_periode/laporan_zona', $data); //menampilkan data yang sudah dicari
+    $this->load->view('templates/footer');
+  }
   #function import data zona
   public function form(){
     $data = array(); // Buat variabel $data sebagai array

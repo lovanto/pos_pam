@@ -10,10 +10,11 @@
    </style>
 </head>
 <body>
+  <div style="margin: 2rem;">
   <center><h5>Laporan Cek Meteran 
     <?php
       $metode = isset($_GET['metode']) ? $_GET['metode'] : '';
-      if($metode == "1"){
+      if($metode == "1" OR $metode == NULL){
         $metode = "All Times";
       }
       echo $metode;
@@ -21,7 +22,7 @@
   </h5></center>
   <br><br>
     <form action="<?php echo site_url('page/cariCekMeteran');?>" method="get">
-      <input type="text" name="cari" class="form-control" id="diprint" placeholder="Cari Data" value="<?php echo (isset($_GET['cari'])) ? $_GET['cari'] : ''; ?>">
+      <input type="text" name="cari" class="form-control" id="diprint" placeholder="Nama Pelanggan atau Tanggal Cek" value="<?php echo (isset($_GET['cari'])) ? $_GET['cari'] : ''; ?>">
       <select name="metode" class="form-control" id="diprint" style="width: 300px; margin-top: 10px; margin-bottom: 10px;" required>
         <option value="1">Pilih metode print</option>
         <option value="Harian">Harian</option>
@@ -67,6 +68,6 @@
   <?php 
   echo $this->pagination->create_links();
   ?>
-
+</div>
 </body>
 </html>

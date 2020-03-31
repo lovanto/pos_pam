@@ -1,17 +1,17 @@
-    <div class="flash-data1" data-flashdata="<?= $this->session->flashdata('flash_sukses');?>"></div>
+<div class="flash-data1" data-flashdata="<?= $this->session->flashdata('flash_sukses');?>"></div>
     <div class="flash-data2" data-flashdata="<?= $this->session->flashdata('flash_gagal');?>"></div>
     <?php
     $this->session->userdata('authenticated')
     //$this->session->set_userdata($session);
     ?>
-      <div class="row">
+      <div class="row" style="margin: 0.5rem;">
         <div class="col py-2">
           <button class="btn btn-info" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2"><i class="fas fa-plus"></i>&nbsp;&nbsp;Tambah Checker
           </button>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" style="margin: 1rem;">
         <div class="col">
           <div class="collapse multi-collapse" id="multiCollapseExample1">
             <div class="card">
@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" style="margin: 1rem;">
         <div class="col">
           <div class="collapse multi-collapse show" id="multiCollapseExample2">
             <div class="card shadow-lg">

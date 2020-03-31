@@ -16,6 +16,12 @@ class Page extends MY_Controller {
     $this->load->view('welcome');
     $this->load->view('templates/footer');
   }
+  public function gantiPassword(){
+    $this->load->view('templates/header');
+    $this->authenticated();
+    $this->load->view('gantiPassword');
+    $this->load->view('templates/footer');
+  }
   public function pengguna(){  
     $data['admin']= $this->UserModel->getAllDatapengguna();
     $this->load->view('templates/header');
@@ -25,28 +31,19 @@ class Page extends MY_Controller {
   }
 
    public function pengaduan(){  
-    $data = array();
-    
-    if($this->input->post('submit')){ // Jika user menekan tombol Submit (Simpan) pada form
-      // lakukan upload file dengan memanggil function upload yang ada di GambarModel.php
-      $upload = $this->UserModel->upload();
-      
-      if($upload['result'] == "success"){ // Jika proses upload sukses
-         // Panggil function save yang ada di GambarModel.php untuk menyimpan data ke database
-        $this->UserModel->save($upload);
-        
-        redirect('gambar'); // Redirect kembali ke halaman awal / halaman view data
-      }else{ // Jika proses upload gagal
-        $data['message'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
-      }
-    }
     $data['pengaduan']= $this->UserModel->getAllDatapengaduan();
     $this->load->view('templates/header');
     $this->authenticated();
     $this->load->view('pengaduan',$data);
     $this->load->view('templates/footer');
   }
-
+    public function penanganan(){  
+    $data['penanganan']= $this->UserModel->getAllDatapenanganan();
+    $this->load->view('templates/header');
+    $this->authenticated();
+    $this->load->view('penanganan',$data);
+    $this->load->view('templates/footer');
+  }
     public function pegawai(){  
     $data['pegawai']= $this->UserModel->getAllDatapegawai();
     $this->load->view('templates/header');
@@ -103,6 +100,11 @@ class Page extends MY_Controller {
     $this->UserModel->ubahDatapengguna();
     $this->session->set_flashdata('flash_sukses', 'BERHASIL diubah');
     redirect('page/pengguna');
+  }
+  public function gantiPasswordNow(){
+    $this->UserModel->gantiPasswordNow();
+    $this->session->set_flashdata('flash_sukses', 'BERHASIL diubah');
+    redirect('page/gantiPassword');
   }
     # untuk pegawai
   public function pegawai_tambah(){
@@ -237,11 +239,33 @@ class Page extends MY_Controller {
     $this->session->set_flashdata('flash_sukses', 'BERHASIL diubah');
     redirect('page/pengaduan');
   }
+   #UNTUK penanganan
+  public function penanganan_tambah(){
+    $this->UserModel->tambahDatapenanganan();
+    $this->session->set_flashdata('flash_sukses', 'BERHASIL ditambahkan');
+    redirect('page/penanganan');
+  }
+  public function penanganan_hapus($id){
+    $this->UserModel->hapusDatapenanganan($id);
+    $this->session->set_flashdata('flash_sukses', 'BERHASIL dihapus');
+    redirect('page/penanganan');
+  }
+    public function penanganan_ubah($id){
+    $data['penanganan'] = $this->UserModel->getDatapenanganan($id);
+    $this->load->view('templates/header');
+    $this->load->view('penanganan_ubah', $data);
+    $this->load->view('templates/footer');
+  }
+  public function penanganan_edit(){
+    $this->UserModel->ubahDatapenanganan();
+    $this->session->set_flashdata('flash_sukses', 'BERHASIL diubah');
+    redirect('page/penanganan');
+  }
   #untuk pencarian pengguna
   public function cari(){
     $keyword = $this->input->get('cari', TRUE); //mengambil nilai dari form input cari
-    $data['login'] = $this->UserModel->cari($keyword); //mencari data karyawan berdasarkan 
-    // $data['login'] = $this->UserModel->view();
+    $data['user'] = $this->UserModel->cari($keyword); //mencari data karyawan berdasarkan 
+    // $data['user'] = $this->UserModel->view();
     $this->load->view('templates/header');
     // $this->load->view('templates/sidebar');
     $this->load->view('laporan_periode/laporan_user', $data); //menampilkan data yang sudah dicari
@@ -253,7 +277,7 @@ class Page extends MY_Controller {
     $metode = $this->input->get('metode', TRUE);
     $tanggal = $this->input->get('tanggal', TRUE);
     $data['pembayaran'] = $this->UserModel->cariPembayaran($keyword, $metode, $tanggal); //mencari data pembayaran berdasarkan 
-    // $data['login'] = $this->UserModel->view();
+    // $data['user'] = $this->UserModel->view();
     $this->load->view('templates/header');
     // $this->load->view('templates/sidebar');
     $this->load->view('laporan_periode/laporan_pembayaran_harian', $data); //menampilkan data yang sudah dicari
@@ -265,7 +289,7 @@ class Page extends MY_Controller {
     $metode = $this->input->get('metode', TRUE);
     $tanggal = $this->input->get('tanggal', TRUE);
     $data['checker'] = $this->UserModel->cariCekMeteran($keyword, $metode, $tanggal); //mencari data pembayaran berdasarkan 
-    // $data['login'] = $this->UserModel->view();
+    // $data['user'] = $this->UserModel->view();
     $this->load->view('templates/header');
     // $this->load->view('templates/sidebar');
     $this->load->view('laporan_periode/laporan_cek', $data); //menampilkan data yang sudah dicari
@@ -285,7 +309,7 @@ class Page extends MY_Controller {
   public function cariZona(){
     $keyword = $this->input->get('cari', TRUE); //mengambil nilai dari form input cari
     $data['zona'] = $this->UserModel->cariZona($keyword); //mencari data pembayaran berdasarkan 
-    // $data['login'] = $this->UserModel->view();
+    // $data['user'] = $this->UserModel->view();
     $this->load->view('templates/header');
     // $this->load->view('templates/sidebar');
     $this->load->view('laporan_periode/laporan_zona', $data); //menampilkan data yang sudah dicari
@@ -430,5 +454,91 @@ class Page extends MY_Controller {
     
     redirect('page/pelanggan');
     // Redirect ke halaman awal (ke controller siswa fungsi index)
+  }
+    # pencarian data dan laporan checker
+    public function cari_checker(){
+    $keyword = $this->input->get('cari', TRUE); //mengambil nilai dari form input cari
+    $data['checker'] = $this->UserModel->cari_checker($keyword); //mencari data karyawan berdasarkan inputan
+    $this->load->view('templates/header');
+    // $this->load->view('templates/sidebar');
+    $this->load->view('laporan_periode/laporan_checker', $data); //menampilkan data yang sudah dicari
+    $this->load->view('templates/footer');
+  }
+   # untuk laporan checker
+  public function laporan_checker()
+    {
+        if(isset($_POST['submit']))
+        {
+            $tanggal1=  $this->input->post('tanggal1');
+            $tanggal2=  $this->input->post('tanggal2');
+            $data['checker']=  $this->UserModel->laporan_berkala($tanggal1,$tanggal2);
+             $this->load->view('templates/header');
+             // $this->load->view('templates/sidebar');
+             $this->load->view('laporan_periode/laporan_checker',$data);
+             $this->load->view('templates/footer');
+        }
+        elseif(isset($_POST['submit2']))
+        {
+            $tanggal3=  $this->input->post('tanggal3');
+            $tanggal4=  $this->input->post('tanggal4');
+            $data['checker']=  $this->UserModel->laporan_berkala1($tanggal3,$tanggal4);
+            $this->load->view('laporan/cetak_checker',$data);
+        }
+        else
+        {
+            $data['checker']=  $this->UserModel->laporan_checker_default();
+            $this->load->view('templates/header');
+            // $this->load->view('templates/sidebar');
+            $this->load->view('laporan_periode/laporan_checker',$data);
+            $this->load->view('templates/footer');
+        }
+
+   }
+     # pencarian data dan laporan pembayaran
+    public function cari_pembayaran(){
+    $keyword = $this->input->get('cari', TRUE); //mengambil nilai dari form input cari
+    $data['pembayaran'] = $this->UserModel->cari_pembayaran($keyword); //mencari data karyawan berdasarkan inputan
+    $this->load->view('templates/header');
+    // $this->load->view('templates/sidebar');
+    $this->load->view('laporan_periode/laporan_pembayaran', $data); //menampilkan data yang sudah dicari
+    $this->load->view('templates/footer');
+  }
+   # untuk laporan pembayaran
+  public function laporan_pembayaran()
+    {
+        if(isset($_POST['submit']))
+        {
+            $tanggal1=  $this->input->post('tanggal1');
+            $tanggal2=  $this->input->post('tanggal2');
+            $data['pembayaran']=  $this->UserModel->laporan_berkala_pb($tanggal1,$tanggal2);
+             $this->load->view('templates/header');
+             // $this->load->view('templates/sidebar');
+             $this->load->view('laporan_periode/laporan_pembayaran',$data);
+             $this->load->view('templates/footer');
+        }
+        elseif(isset($_POST['submit2']))
+        {
+            $tanggal3=  $this->input->post('tanggal3');
+            $tanggal4=  $this->input->post('tanggal4');
+            $data['pembayaran']=  $this->UserModel->laporan_berkala1_pb($tanggal3,$tanggal4);
+            $this->load->view('laporan/cetak_pembayaran',$data);
+        }
+        else
+        {
+            $data['pembayaran']=  $this->UserModel->laporan_pembayaran_default();
+            $this->load->view('templates/header');
+            // $this->load->view('templates/sidebar');
+            $this->load->view('laporan_periode/laporan_pembayaran',$data);
+            $this->load->view('templates/footer');
+        }
+
+   }
+    public function cetak_pelanggan($no_pelanggan){
+    $data = array(
+      'data' => $this->db->query("SELECT * FROM pelanggan where no_pelanggan='$no_pelanggan'"),
+    );
+    $this->load->view('templates/header');
+    $this->load->view('laporan/cetak_pelanggan',$data);
+    $this->load->view('templates/footer');
   }
 }

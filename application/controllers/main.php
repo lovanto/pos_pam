@@ -8,10 +8,16 @@ public function __construct(){
     
   }
 
-	public function index()
-
-	{
-		$data['guru']= $this->UserModel->getAllDataguru();
-		$this->load->view('end_user/index',$data);
-	}
+  public function index()
+  {
+	  $data['pelanggan']= $this->UserModel->getAllDatapelanggan();
+	  $data['checker']= $this->UserModel->getAllDatacek();
+	  $data['pembayaran']= $this->UserModel->getAllDatabayar();
+	  return $this->load->view('end_user/index',$data);
+  }
+	public function pengguna_tambah(){
+    $this->UserModel->tambahDatapengguna();
+    // $this->session->set_flashdata('flash_sukses', 'BERHASIL ditambahkan');
+	  // redirect('main');
+  }
 }

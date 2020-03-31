@@ -1,595 +1,819 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
+  <title>SISTEM INFORMASI PERSEDIAAN AIR MINERAL (PAM)</title>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- css -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,700,800" rel="stylesheet" media="screen">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <link href="<?= base_url('asset_end_user/css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
+  <link href="<?= base_url('asset_end_user/css/style.css'); ?>" rel="stylesheet" media="screen">
+  <link href="<?= base_url('asset_end_user/color/default.css'); ?>" rel="stylesheet" media="screen">
+  <link href="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-  <title>Sistem Informasi Bimbingan Konseling</title>
-  <link rel="icon" href="<?php echo base_url('asset_end_user/icon.ico'); ?>" type="image/x-icon" />
+  <style>
+    div.dataTables_wrapper {
+      margin-bottom: 3em;
+    }
+  </style>
 
-  <!-- Bootstrap core CSS -->
-  <link href="<?php echo base_url('asset_end_user/vendor/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
-  <!-- Datatable -->
-  <link href="<?php echo base_url('asset_end_user/datatables/dataTables.bootstrap4.min.css') ; ?>" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset_end_user/datatables/dataTables.bootstrap4.css') ; ?>">
-  <!-- Custom fonts for this template -->
-  <link href="<?php echo base_url('asset_end_user/vendor/fontawesome-free/css/all.min.css');?>" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="<?php echo base_url('asset_end_user/css/grayscale.min.css');?>" rel="stylesheet">
-
+  <!-- =======================================================
+    Theme Name: Alstar
+    Theme URL: https://bootstrapmade.com/alstar-free-parallax-bootstrap-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
 </head>
 
-<body id="page-top">
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-   <!--     <a class="navbar-brand" href="#"><img class="logo" src="<?=base_url('assets/img/SMK-MEDIKACOM.png');?>" alt="Logo" width="50" height="50"></a> -->
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Bimbingan Konseling</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil Data
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <div class="dropdown-item disabled">Sekolah</div>
-              <a class="dropdown-item text-primary" href="#sekilas" >&nbsp;&nbsp;Sekilas Profile Sekolah</a>
-              <a class="dropdown-item text-primary" href="#visimisi" >&nbsp;&nbsp;Visi Misi Sekolah</a>
-              <div class="dropdown-divider"></div>
-              <div class="dropdown-item disabled">Bimbingan Konseling</div>
-              <a class="dropdown-item text-primary" href="<?= base_url('Perpustakaan/tentang_perpustakaan');?>">&nbsp;&nbsp;Tentang Bimbingan Konseling</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informasi
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <div class="dropdown-item disabled">Sekolah</div>
-              <a class="dropdown-item text-primary" href="#dataguru" >&nbsp;&nbsp;Data Guru</a>
-              <a class="dropdown-item text-primary" href="#Walikelas">&nbsp;&nbsp;Data Walikelas</a>
-              <a class="dropdown-item text-primary" href="#Siswa" >&nbsp;&nbsp;Data Siswa</a>
-              <div class="dropdown-divider"></div>
-              <div class="dropdown-item disabled">Bimbingan Konseling</div>
-              <a class="dropdown-item text-primary" href="#Pembinaan">&nbsp;&nbsp;Data Pembinaan Konseling</a>
-            </div>
-          </li>
+<body>
 
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="<?= base_url('welcome');?>">Chat Konseling</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('auth');?>">Login </a>
+  <!-- Navigation -->
+  <nav class="tetap" style="color: #fff;">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle nav</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <!-- Logo text or image -->
+        <a class="navbar-brand ssa" href="<?= base_url('main'); ?>">IS-PAM V1
+        </a>
+
+      </div>
+      <div class="navigation collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li class="current"><a class="ssa" href="#intro">Home</a></li>
+          <li><a class="ssa" href="#about">Profil Perusahaan</a></li>
+          <li><a class="ssa" href="#services">Layanan kami</a></li>
+          <li><a class="ssa" href="#portfolio">Works</a></li>
+          <li><a class="ssa" href="#team">Team</a></li>
+          <li><a class="ssa" href="#contact">Contact</a></li>
+          <li class="nav-item dropdown">
+            <a class="ssa" class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-fw fa-inverse"></i>
+              <span>Daftar Account / Login App</span></a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+              <!-- <h6 class="dropdown-header">Laporan Master :</h6> -->
+              <a class="navigation collapse navbar-collapse navbar-ex1-collapse" href="<?= base_url('Auth'); ?>">Login</a><br>
+              <a class="navigation collapse navbar-collapse navbar-ex1-collapse" href="#daftarin">Daftar</a>
+            </div>
+            </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Header -->
-  <header class="masthead">
-    <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">SIS-FO BK</h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5">Sistem Informasi Bimbingan Konseling</h2>
-        <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
-      </div>
-    </div>
-  </header>
+  <!-- intro area -->
+  <section id="intro" style="z-index: 10000;">
+    <div class="intro-container">
+      <div id="introCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
-  <section id="sekilas" class="projects-section bg-light">
-    <div class="container-fluid">
-       <div class="featured-text text-center text-lg-left">
-           <center> <h4>Sekilas Tentang Smk Medikacom</h4></center>
-            <p class="text-black-50 mb-0">
-              <div>       
-      <!-- Sekilas tentang sekolah -->
-      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-        <div class="col-l-8 col-lg-7">
-          <img class="img-fluid mb-3 mb-lg-0" src="<?php echo base_url('asset_end_user/img/Tampilan 6.jpg');?>" alt="">
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="item active">
+            <div class="carousel-background"><img src="<?= base_url('asset_end_user/img/intro/2.jpg'); ?>" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animated fadeInDown">PT.Tirta Alam Kencana</h2>
+                <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <a href="#about" class="btn-get-started animated fadeInUp">Profil Perusahaan</a>
+                <div class="dropdown show">
+                  <a class="btn-get-started animated fadeInUp dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Data Informasi
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a href="#pelanggan">Data Pelanggan</a></li>
+                    <li><a href="#checker">Data Checker</a></li>
+                    <li><a href="#pembayaran">Data Pembayaran</a></li>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="item">
+            <div class="carousel-background"><img src="<?= base_url('asset_end_user/img/intro/1.jpg'); ?>" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animated fadeInDown">PT.Tirta Alam Kencana</span></h2>
+                <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <a href="#about" class="btn-get-started animated fadeInUp">Profil Perusahaan</a>
+                <div class="dropdown show">
+                  <a class="btn-get-started animated fadeInUp dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Data Informasi
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a href="#pelanggan">Data Pelanggan</a></li>
+                    <li><a href="#checker">Data Checker</a></li>
+                    <li><a href="#pembayaran">Data Pembayaran</a></li>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon fa fa-angle-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+
+            <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon fa fa-angle-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+
+          </div>
         </div>
-        <div class="col-xl-4 col-lg-5">
-          <div class="featured-text text-center text-lg-left">
-            <h4>Smk Medikacom Bandung</h4>
-            <p class="text-black-50 mb-0">
-              <div>
-                  <img src="<?php echo base_url('asset_end_user/img/1.jpg');?>" alt="">
-              </div>
-              </div>
+  </section><!-- #intro -->
+
+  <!-- About -->
+  <section id="about" class="home-section bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="section-heading">
+            <h2>Company Profile PT.Tirta Alam Kencana</h2>
+            <div class="heading-line"></div>
+            <p>We’ve been building unique digital products, platforms, and experiences for the past 6 years.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row wow fadeInUp">
+        <div class="col-md-6 about-img">
+          <img src="<?= base_url('assets/img/logo.png'); ?>" width="350">
+        </div>
+
+        <div class="col-md-6 content">
+          <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elite storium paralate</h2>
+          <h3>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.</h3>
+          <p>
+            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum Libero justo laoreet sit amet
+            cursus sit amet dictum sit. Commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend
+            donec Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum
           </p>
-          </div>
-        </div>
-      </div>
-</div>
-</section>
-  
-<!-- Pembinaan BK --> 
-  <section class="page-section" id="FotoBinaan">
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <h2 class="section-heading text-uppercase">Gedung SMK Medikacom Bandung</h2>
-        </div>
-      </div>
-    <div class="container-fluid">     
-      <div class="row">
-        <div class="col">
-          <div class="collapse multi-collapse show" id="multiCollapseExample2">
-            <div class="card shadow-lg">
-              <div class="card-body">
-
-              <div id="demo" class="carousel slide" data-ride="carousel">
-
-              <!-- Indicators -->
-              <ul class="carousel-indicators">
-                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                <li data-target="#demo" data-slide-to="1"></li>
-                <li data-target="#demo" data-slide-to="2"></li>
-  
-              </ul>
-
-              <!-- The slideshow -->
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="<?php echo base_url('asset_end_user/img/g.jpg');?>" alt="">
-                </div>
-                <div class="carousel-item">
-                  <img src="<?php echo base_url('asset_end_user/img/e.jpg');?>" alt="">
-                </div>
-                <div class="carousel-item">
-                  <img src="<?php echo base_url('asset_end_user/img/h.jpeg');?>" alt="">
-                </div>
-              </div>
-              <!-- Left and right controls -->
-              <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-              </a>
-              <a class="carousel-control-next" href="#demo" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-              </a>
-
-            </div>
-            </div>          
-          </div>
         </div>
       </div>
     </div>
-  </div>
   </section>
-  <br>
-  <br>
-  <!-- About Section 
-  <section id="about" class="about-section text-center">
+
+  <!-- Parallax 1 -->
+  <section id="parallax1" class="home-section parallax" data-stellar-background-ratio="0.5">
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
-          <p class="text-white-50">Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-            <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
-        </div>
-      </div>
-      <img src="<?php echo base_url('asset_end_user/img/1.jpg');?>" class="img-fluid" alt="">
-    </div>
-  </section>-->
-  <div class="col text-center">
-          <h2 class="section-heading text-uppercase">Visi Misi Smk Medikacom</h2>
-        </div>
-      <!-- Visi Dan Misi -->
-    <section id="visimisi" class="projects-section bg-light">
-      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-        <div class="col-lg-6">
-          <img class="img-fluid" src="<?php echo base_url('asset_end_user/img/demo-image-01.jpg');?>" alt="">
-        </div>
-        <div class="col-lg-6">
-          <div class="bg-black text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="text-white">VISI</h4>
-                <p align="justify-content-center" class="text-white">
-                PADA TAHUN 2036 MENJADI SMK TEFA RUJUKAN YANG UNGGUL DALAM KELEMBAGAAN DAN PRESTASI  YANG MENGHASILKAN LULUSAN YANG BERMUTU  TINGGI DAN BERDAYA SAING LOKAL DAN GLOBAL YANG DILANDASI AKHLAK MULIA, BERKPRIBADIAN KEBANGSAAN DAN BERWAWASAN LINGKUNGAN
-                </p>
-                <hr class="d-none d-lg-block mb-0 ml-0">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <!-- mISI -->
-      <div class="row justify-content-center no-gutters">
-        <div class="col-lg-6 order-lg-first">
-          <div class="bg-black text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="text-white">MISI</h4>
-                <p class="text-white">
-               1.  Melaksanakan pengembangan manajemen dan keorganisasian sekolah dengan menerapkan standar Sistem Manajemen Mutu (SMM) ISO 9001:2008 agar menjadi sekolah yang <b>unggul dalam kelembagaan.</b>.<br><br>
-               2.  Menggali dan mengembangkan potensi setiap siswa dengan memberdayakan (empowering) kecerdasan intelektual (IQ), emosional (EQ) maupun kecerdasan spritual (SQ).<br><br>
-               3.  Melakukan proses pembelajaran yang inovatif dan kreatif.<br><br>
-               4.  Membekali siswa dengan ilmu pengetahuan (knowledge), keterampilan tinggi (high skill) dan sikap (performance sehingga kompeten/trampil dan unggul memasuki pasar kerja serta berjiwa interpreneurship.<br><br>
-               5.  Melaksanakan pengembangan SDM pendidik dan kependidikan agar menjadi seklah yang unggul dalam prestasi<br><br>
-               6. Meningkatkan kelengkapan sarana-prasarana pendidikan, workshop, lab dalam rangka pengembangan sekolah <b>“advanced training centre dan teaching industry”</b><br><br>
-               7. Mengembangkan pelaksanaan kegiatan ekstrakurikuler unggulan sesuai dengan potensi dan minat siswa.<br><br>
-               8. Melaksanakan pengembangan jaringan kerjasama mitra industri (network) dan institusi dalam dan luar negeri dalam rangka mendukung program ZERO JOBLESS.<br><br>
-              9.  Menerapkan manajemen partisipatif dengan melibatkan seluruh warga sekolah dan komite sekolah.<br><br> 
-              10. Membudayakan sikap disiplin, memilki kinerja dan motifasi belajar yang tinggi untuk mewujudkan jiwa sekolah yang kreatif, berprestasi dan demokratis.<br><br>
-              11. Melaksanakan pembelajaran dan bimbingan secara efektif sehingga setiap siswa berkembang secara optimal, sesuai dengan potensi yang dimiliki.<br><br>
-              12. Menumbuhkan semangat keunggulan secara intensif kepada seluruh warga sekolah.<br><br>
-              13. Menumbuhkan dan mendorong keunggulan dalam penerapan ilmu pengetahuan, teknologi dan seni.<br><br>
-              14. Menumbuhkan penghayatan terhadap ajaran agama yang dianut, budaya & karakter bangsa sehingga terbangun siswa yang kompeten dan berkarakter.<br><br>
-              15. Mendorong lulusan yang berkualitas, berprestasi, berakhlak tinggi, dan bertaqwa pada Tuhan Yang Maha Esa. Melaksanakan pembelajaran dan bimbingan secara efektif sehingga setiap siswa berkembang secara optimal, sesuai dengan potensi yang dimiliki.<br><br>
-                </p>
-                <hr class="d-none d-lg-block mb-0 mr-0">
-              </div>
-            </div>
+        <div class="col-md-12">
+          <div class="color-light">
+            <h2 class="wow bounceInDown" data-wow-delay="0.5s">Details are the key for perfection</h2>
+            <p class="lead wow bounceInUp" data-wow-delay="1s">We mix all detailed things together</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Data Guru  -->
-  
-  <section id="dataguru" class="projects-section bg-light">
-    <div class="container-fluid">
-      <!-- Sekilas tentang sekolah -->
-        <div class="col-fluid">
-          <div class="featured-text text-center text-lg-left">
-            <div class="col text-center">
-          <h2 class="section-heading text-uppercase">Data Guru SMK Medikacom Bandung</h2>
-          <h3 class="section-subheading text-muted">Informasi Data Guru</h3>
-        </div>
-      </div>
-        <div class="container data_buku">
-          <div class="row">
-           <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable" width="120%" cellspacing="0">
-                    <thead class="bg-info text-white"> 
-                      <tr class="text-center">
-                        <th>No         </th>
-                        <th>Nama </th>
-                        <th>Alamat </th>
-                        <th>Telepon Guru</th>
-                        <th>Mata Pelajaran</th>
-                        <th>Email</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php 
-                      $no = 0;
-                      foreach($guru as $s):$no++;?>
-                      <tr>
-                        <td class="text-center text-middle"><?=$no;?></td>
-                        <td class="text-middle"><?=$s['nama_guru'];?></td>
-                        <td class="text-middle"><?=$s['alamat_guru'];?></td>
-                        <td class="text-middle"><?=$s['telepon_guru'];?></td>
-                        <td class="text-middle"><?=$s['pelajaran'];?></td>
-                        <td class="text-middle"><?=$s['email'];?></td>
-                      </tr>
-                      <?php endforeach;?>
-                    </tbody>
-                  </table>
-        </div>
-        </div>
-        </div>
-          </div>
-        </div>
-      </div>
-</section>
-  <!-- Data Guru  -->
-  
-  <section id="Walikelas" class="projects-section bg-light">
-    <div class="container-fluid">
-      <!-- Sekilas tentang sekolah -->
-        <div class="col-fluid">
-          <div class="featured-text text-center text-lg-left">
-            <div class="col text-center">
-          <h2 class="section-heading text-uppercase">Data Walikelas SMK Medikacom Bandung</h2>
-          <h3 class="section-subheading text-muted">Informasi Data Walikelas</h3>
-        </div>
-      </div>
-        <div class="container data_buku">
-          <div class="row">
-           <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable1" width="120%" cellspacing="0">
-                    <thead class="bg-info text-white"> 
-                     <tr>
-                       <th>No.</th>
-                       <th>Kelas</th>
-                       <th>Nama Guru</th>
-                       <th>No Telepon</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php 
-                       $sql = $this->db->query("SELECT xtb_class.kelas , xtb_teacher.nama_guru, xtb_teacher.telepon_guru FROM
-                             (xtb_class JOIN xtb_teacher ON xtb_class.nip=xtb_teacher.nip)group by kelas");
-                       $no = 1;
-                       foreach ($sql->result() as $row) {
-                        ?>
-                    <tr>
-                       <td><?php echo $no++; ?></td>
-                       <td><?php echo $row->kelas; ?></td>  
-                       <td><?php echo $row->nama_guru; ?></td>
-                       <td><?php echo $row->telepon_guru; ?></td>
-                    </tr>
-                      <?php } ?>
-                    </tbody>
-                  </table>
-        </div>
-        </div>
-        </div>
-          </div>
-        </div>
-      </div>
-</section>
-<br><br>
-  <section class="page-section" id="Siswa">
+
+  <!-- Services -->
+  <section id="services" class="home-section bg-white">
     <div class="container">
       <div class="row">
-        <div class="col text-center">
-          <h2 class="section-heading text-uppercase">Data Siswa SMK Medikacom Bandung</h2>
-          <h3 class="section-subheading text-muted">Informasi Data Siswa</h3>
+        <div class="col-md-offset-2 col-md-8">
+          <div class="section-heading">
+            <h2>Layanan Kami</h2>
+            <div class="heading-line"></div>
+            <p>We’ve been building unique digital products, platforms, and experiences for the past 6 years.</p>
+          </div>
         </div>
       </div>
-      <div class="container">
-         
       <div class="row">
-        <div class="col">
-          <div class="collapse multi-collapse show" id="multiCollapseExample2">
-            <div class="card shadow-lg">
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable2" width="200%" cellspacing="0">
-                    <thead class="bg-info text-white"> 
-                      <tr class="text-center">
-                        <th>No         </th>
-                        <th>Nis   </th>
-                        <th>Nama    </th>
-                        <th>Alamat </th>
-                        <th>Tgl_lahir</th>
-                        <th>Jk</th>
-                        <th>Telp</th>
-                        <th>Kelas </th>
-                        <th>Jurusan </th>
-                      </tr>
-                    </thead>
-                <tbody>
-                    <?php 
-                       $sql = $this->db->query("SELECT * from siswa_v");
-                       $no = 1;
-                       foreach ($sql->result() as $row) {
-                        ?>
-                    <tr>
-                       <td><?php echo $no++; ?></td>
-                       <td><?php echo $row->nis; ?></td>  
-                       <td><?php echo $row->nama_lengkap; ?></td>
-                       <td><?php echo $row->almt_lengkap; ?></td>
-                       <td><?php echo $row->tgl_lahir; ?></td>
-                       <td><?php echo $row->jenis_kel; ?></td>
-                       <td><?php echo $row->telepon ; ?></td>
-                       <td><?php echo $row->kelas ; ?></td>
-                       <td><?php echo $row->kode_jurusan ; ?></td>
+        <div class="col-md-12">
+          <div id="carousel-service" class="service carousel slide">
 
-                    </tr>
-                      <?php } ?>
-                    </tbody>
-                  </table>
+            <!-- slides -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <div class="row">
+                  <div class="col-sm-12 col-md-offset-1 col-md-6">
+                    <div class="wow bounceInLeft">
+                      <h4>Pemasangan Baru</h4>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna.</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-5">
+                    <div class="screenshot wow bounceInRight">
+                      <img src="<?= base_url('asset_end_user/img/screenshots/1.png'); ?>" class="img-responsive" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="row">
+                  <div class="col-sm-12 col-md-offset-1 col-md-6">
+                    <div class="wow bounceInLeft">
+                      <h4>Maintenance/Perawatan</h4>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna.</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-5">
+                    <div class="screenshot wow bounceInRight">
+                      <img src="<?= base_url('asset_end_user/img/screenshots/2.png'); ?>" class="img-responsive" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="row">
+                  <div class="col-sm-12 col-md-offset-1 col-md-6">
+                    <div class="wow bounceInLeft">
+                      <h4>Pencatatan dan Pembayaran</h4>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna.</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-5">
+                    <div class="screenshot wow bounceInRight">
+                      <img src="<?= base_url('asset_end_user/img/screenshots/3.png'); ?>" class="img-responsive" alt="" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-service" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-service" data-slide-to="1"></li>
+              <li data-target="#carousel-service" data-slide-to="2"></li>
+            </ol>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-      
-      </div>
-      </div>
-    </div>
-        
-    </section>
-    <br>
-    <br>
-    <!-- Data Pembinaan --> 
-  <section class="page-section" id="Pembinaan">
+  <!-- Data -->
+  <section id="pelanggan" class="home-section bg-white">
     <div class="container">
       <div class="row">
-        <div class="col text-center">
-          <h2 class="section-heading text-uppercase">Data Pembinaan Siswa SMK Medikacom Bandung</h2>
-          <h3 class="section-subheading text-muted">Informasi Data Pembinaan Siswa</h3>
+        <div class="col-md-offset-2 col-md-8">
+          <div class="section-heading">
+            <h2>Data Pelanggan PT.Tirta Alam Kencana</h2>
+            <div class="heading-line"></div>
+          </div>
         </div>
       </div>
-      <div class="container">
-         
-      <div class="row">
-        <div class="col">
-          <div class="collapse multi-collapse show" id="multiCollapseExample2">
-            <div class="card shadow-lg">
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable3" width="120%" cellspacing="0">
-                    <thead class="bg-info text-white"> 
-                     <tr>
-                       <th>No.</th>
-                        <th>Kode Pembinaan  </th>
-                        <th>Tgl Pembinaan</th>
-                        <th>Nis</th>
-                        <th>Nama </th>
-                        <th>Kelas </th>
-                        <th>Permasalahan</th>
-                        <th>Kategori</th>
-                        <th>Tindakan</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php 
-                       $sql = $this->db->query("SELECT * from pembinaan_cuy group by kode_pembinaan");
-                       $no = 1;
-                       foreach ($sql->result() as $row) {
-                        ?>
-                    <tr>
-                       <td><?php echo $no++; ?></td>
-                       <td><?php echo $row->kode_pembinaan; ?></td>  
-                       <td><?php echo $row->tgl_pembinaan; ?></td>
-                       <td><?php echo $row->nis; ?></td>
-                       <td><?php echo $row->nama_lengkap; ?></td>
-                       <td><?php echo $row->kelas; ?></td>
-                       <td><?php echo $row->permasalahan; ?></td>
-                       <td><?php echo $row->kategori; ?></td>
-                       <td><?php echo $row->nm_tindakan; ?></td>
+      <div class="row wow fadeInUp">
+        <div class="table-responsive">
+          <table class="table table-bordered display" id="" width="120%" cellspacing="0">
+            <thead class="bg-info text-white">
+              <tr class="text-center">
+                <th>No </th>
+                <th>No Pelanggan </th>
+                <th>Nama </th>
+                <th>Alamat </th>
+                <th>Email </th>
+                <th>Tanggal Lahir </th>
+                <th>Gender</th>
+                <th>No Identitas</th>
+                <th>No Telp</th>
+                <th>Telp Rumah</th>
+                <th>Zona</th>
+                <th>Tarif</th>
+                <th>Kategori</th>
+                <th>Pemakaian/Meter</th>
+                <th>Tgl Registrasi</th>
+                <th>Status</th>
+                <th>Biaya Instalasi</th>
+                <th>Petugas Instalasi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $no = 0;
+              foreach ($pelanggan as $s) : $no++; ?>
+                <tr>
+                  <td class="text-center text-middle"><?= $no; ?></td>
+                  <td class="text-middle"><?= $s['no_pelanggan']; ?></td>
+                  <td class="text-middle"><?= $s['nama']; ?></td>
+                  <td class="text-middle"><?= $s['alamat']; ?></td>
+                  <td class="text-middle"><?= $s['email']; ?></td>
+                  <td class="text-middle"><?= $s['tgl_lahir']; ?></td>
+                  <td class="text-middle"><?= $s['jk']; ?></td>
+                  <td class="text-middle"><?= $s['no_ktp']; ?></td>
+                  <td class="text-middle"><?= $s['no_telp']; ?></td>
+                  <td class="text-middle"><?= $s['telp_rumah']; ?></td>
+                  <td class="text-middle"><?= $s['zona']; ?></td>
+                  <td class="text-middle"><?= $s['tarif']; ?></td>
+                  <td class="text-middle"><?= $s['kategori']; ?></td>
+                  <td class="text-middle"><?= $s['pakai_meter']; ?></td>
+                  <td class="text-middle"><?= $s['tgl_reg']; ?></td>
+                  <td class="text-middle"><?= $s['status']; ?></td>
+                  <td class="text-middle"><?= $s['biaya_instalasi']; ?></td>
+                  <td class="text-middle"><?= $s['nama_pegawai']; ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                    </tr>
-                      <?php } ?>
-                    </tbody>
-                  </table>
+  <section id="checker" class="home-section bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="section-heading">
+            <h2>Data Checker PT.Tirta Alam Kencana</h2>
+            <div class="heading-line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row wow fadeInUp">
+        <div class="table-responsive">
+          <table class="table table-bordered display" id="" width="120%" cellspacing="0">
+            <thead class="bg-info text-white">
+              <tr class="text-center">
+                <th>No.</th>
+                <th>No Pelanggan </th>
+                <th>Nama Pelanggan </th>
+                <th>Zona </th>
+                <th>Tarif </th>
+                <th>Pemakaian</th>
+                <th>Catat meter</th>
+                <th>Tanggal Cek</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $no = 0;
+              foreach ($checker as $s) : $no++; ?>
+                <tr>
+                  <td class="text-center text-middle"><?= $no; ?></td>
+                  <td class="text-middle"><?= $s['no_pelanggan']; ?></td>
+                  <td class="text-middle"><?= $s['nama']; ?></td>
+                  <td class="text-middle"><?= $s['zona']; ?></td>
+                  <td class="text-middle"><?= $s['tarif']; ?></td>
+                  <td class="text-middle"><?= $s['pakai_meter']; ?></td>
+                  <td class="text-middle"><?= $s['catat_meter']; ?></td>
+                  <td class="text-middle"><?= $s['tgl_cek']; ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pembayaran" class="home-section bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="section-heading">
+            <h2>Data Pembayaran PT.Tirta Alam Kencana</h2>
+            <div class="heading-line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row wow fadeInUp">
+        <div class="table-responsive">
+          <table class="table table-bordered display" id="" width="120%" cellspacing="0">
+            <thead class="bg-info text-white">
+              <tr class="text-center">
+                <th>No.</th>
+                <th>No Transaksi </th>
+                <th>No Pelanggan</th>
+                <th>Nama Pelanggan </th>
+                <th>Zona </th>
+                <th>Kategori</th>
+                <th>Tarif </th>
+                <th>Catat meter</th>
+                <th>Jumlah Bayar</th>
+                <th>Biaya Admin</th>
+                <th>Denda</th>
+                <th>Total Bayar</th>
+                <th>Tanggal Bayar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $no = 0;
+              foreach ($pembayaran as $s) : $no++; ?>
+                <tr>
+                  <td class="text-center text-middle"><?= $no; ?></td>
+                  <td class="text-middle"><?= $s['no_transaksi']; ?></td>
+                  <td class="text-middle"><?= $s['no_pelanggan']; ?></td>
+                  <td class="text-middle"><?= $s['nama']; ?></td>
+                  <td class="text-middle"><?= $s['zona']; ?></td>
+                  <td class="text-middle"><?= $s['kategori']; ?></td>
+                  <td class="text-middle"><?= $s['tarif']; ?></td>
+                  <td class="text-middle"><?= $s['catat_meter']; ?></td>
+                  <td class="text-middle"><?= $s['total_bayar']; ?></td>
+                  <td class="text-middle"><?= $s['biaya_admin']; ?></td>
+                  <td class="text-middle"><?= $s['denda']; ?></td>
+                  <td class="text-middle"><?= $s['grand_total']; ?></td>
+                  <td class="text-middle"><?= $s['tgl_bayar']; ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Works -->
+  <section id="portfolio" class="home-section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="section-heading">
+            <h2>Works</h2>
+            <div class="heading-line"></div>
+            <p>We’ve been building unique digital products, platforms, and experiences for the past 6 years.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+
+          <ul id="og-grid" class="og-grid">
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/1.jpg'); ?>" data-title="Portfolio title" data-description="Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut, no dolore luptatum incorrupte nec. In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea. Sed oratio repudiare ei, cum an magna labitur, eu atqui augue mei. Pri consul detracto eu, solet nusquam accusam ex vim, an movet interesset necessitatibus mea.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/1.jpg'); ?>" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/2.jpg'); ?>" data-title="Portfolio title" data-description="Mea an eros periculis dignissim, quo mollis nostrum elaboraret et. Id quem perfecto mel, no etiam perfecto qui. No nisl legere recusabo nam, ius an tale pericula evertitur, dicat phaedrum qui in. Usu numquam legendos in, voluptaria sadipscing ut vel. Eu eum mandamus volutpat gubergren, eos ad detracto nominati, ne eum idque elitr aliquam.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/2.jpg'); ?>" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/3.jpg'); ?>" data-title="Portfolio title" data-description="Vim ad persecuti appellantur. Eam ignota deterruisset eu, in omnis fierent convenire sed. Ne nulla veritus vel, liber euripidis in eos. Postea comprehensam vis in, detracto deseruisse mei ea. Ex sadipscing deterruisset concludaturque quo.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/3.jpg'); ?>" alt="img01" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/4.jpg'); ?>" data-title="Portfolio title" data-description="In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea. Sed oratio repudiare ei, cum an magna labitur, eu atqui augue mei. Pri consul detracto eu, solet nusquam accusam ex vim, an movet interesset necessitatibus mea.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/4.jpg'); ?>" alt="img01" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/5.jpg'); ?>" data-title="Portfolio title" data-description="Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut, no dolore luptatum incorrupte nec. In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/5.jpg'); ?>" alt="img01" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/6.jpg'); ?>" data-title="Portfolio title" data-description="Id elit saepe pro. In atomorum constituam definitionem quo, at torquatos sadipscing eum, ut eum wisi meis mentitum. Probo feugiat ea duo. An usu platonem instructior, qui dolores inciderint ad. Te elit essent mea, vim ne atqui legimus invenire, ad dolor vitae sea.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/6.jpg'); ?>" alt="img01" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/7.jpg'); ?>" data-title="Portfolio title" data-description="Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut, no dolore luptatum incorrupte nec. In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea. Sed oratio repudiare ei, cum an magna labitur, eu atqui augue mei.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/7.jpg'); ?>" alt="img01" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/8.jpg'); ?>" data-title="Portfolio title" data-description="No nisl legere recusabo nam, ius an tale pericula evertitur, dicat phaedrum qui in. Usu numquam legendos in, voluptaria sadipscing ut vel. Eu eum mandamus volutpat gubergren, eos ad detracto nominati, ne eum idque elitr aliquam.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/8.jpg'); ?>" alt="img01" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/9.jpg'); ?>" data-title="Portfolio title" data-description="Lorem ipsum dolor sit amet, ex pri quod ferri fastidii. Mazim philosophia eum ad, facilisis laboramus te est. Eam magna fabellas ut. Ne vis diceret accumsan salutandi, pro in impedit accusamus dissentias, ut nonumy eloquentiam ius.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/9.jpg'); ?>" alt="img01" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/10.jpg'); ?>" data-title="Portfolio title" data-description="Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut, no dolore luptatum incorrupte nec. In mentitum forensibus nec, nibh eripuit ut pri, tale illud voluptatum ut sea. Sed oratio repudiare ei, cum an magna labitur, eu atqui augue mei. Pri consul detracto eu, solet nusquam accusam ex vim.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/10.jpg'); ?>" alt="img01" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/11.jpg'); ?>" data-title="Portfolio title" data-description="Vim ad persecuti appellantur. Eam ignota deterruisset eu, in omnis fierent convenire sed. Ne nulla veritus vel, liber euripidis in eos. Postea comprehensam vis in, detracto deseruisse mei ea. Ex sadipscing deterruisset concludaturque quo.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/11.jpg'); ?>" alt="img01" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-largesrc="<?= base_url('asset_end_user/img/works/12.jpg'); ?>" data-title="Portfolio title" data-description="Mea an eros periculis dignissim, quo mollis nostrum elaboraret et. Id quem perfecto mel, no etiam perfecto qui. No nisl legere recusabo nam, ius an tale pericula evertitur, dicat phaedrum qui in. Usu numquam legendos in, voluptaria sadipscing ut vel. Eu eum mandamus volutpat gubergren, eos ad detracto nominati, ne eum idque elitr aliquam.">
+                <img src="<?= base_url('asset_end_user/img/works/thumbs/12.jpg'); ?>" alt="img01" />
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax 2 -->
+  <section id="parallax2" class="home-section parallax" data-stellar-background-ratio="0.5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="clients">
+            <li class="wow fadeInDown" data-wow-delay="0.3s"><a href="#"><img src="<?= base_url('asset_end_user/img/clients/1.png'); ?>" alt="" /></a></li>
+            <li class="wow fadeInDown" data-wow-delay="0.6s"><a href="#"><img src="<?= base_url('asset_end_user/img/clients/2.png'); ?>" alt="" /></a></li>
+            <li class="wow fadeInDown" data-wow-delay="0.9s"><a href="#"><img src="<?= base_url('asset_end_user/img/clients/3.png'); ?>" alt="" /></a></li>
+            <li class="wow fadeInDown" data-wow-delay="1.1s"><a href="#"><img src="<?= base_url('asset_end_user/img/clients/4.png'); ?>" alt="" /></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="home-section bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="section-heading">
+            <h2>Our Team</h2>
+            <div class="heading-line"></div>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+              laborum</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+          <div class="box-team wow bounceInUp" data-wow-delay="0.1s">
+            <img src="<?= base_url('asset_end_user/img/team/1.jpg'); ?>" alt="" class="img-circle img-responsive" />
+            <h4>Dominique Vroslav</h4>
+            <p>Art Director</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.3s">
+          <div class="box-team wow bounceInUp">
+            <img src="<?= base_url('asset_end_user/img/team/2.jpg'); ?>" alt="" class="img-circle img-responsive" />
+            <h4>Thomas Jeffersonn</h4>
+            <p>Web Designer</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.5s">
+          <div class="box-team wow bounceInUp">
+            <img src="<?= base_url('asset_end_user/img/team/3.jpg'); ?>" alt="" class="img-circle img-responsive" />
+            <h4>Nola Maurin</h4>
+            <p>Illustrator</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">
+          <div class="box-team wow bounceInUp">
+            <img src="<?= base_url('asset_end_user/img/team/4.jpg'); ?>" alt="" class="img-circle img-responsive" />
+            <h4>Mira Ladovic</h4>
+            <p>Typographer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- pendaftaran pelanggan -->
+  <section id="daftarin" class="home-section bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="section-heading">
+            <h2>Pendaftaran User Aplikasi PAM Air V1</h2>
+            <div class="heading-line"></div>
+            <p>Buat account terlebih dahulu untuk dapat melakukan Transaksi di aplikasi !</p>
+          </div>
+        </div>
+      </div>
+      <div class="row wow fadeInUp">
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8">
+            <div id="sendmessage">Your message has been sent. Thank you!</div>
+            <!-- <div id="errormessage"></div> -->
+
+            <!-- <form action="" method="post" > -->
+            <form method="post" accept-charset="utf-8" enctype="multipart/form-data" class="form-horizontal contactForm" role="form" action="<?= base_url('main/pengguna_tambah'); ?>">
+              <div class="col-md-offset-2 col-md-8">
+                <div class="form-group">
+                  <input type="text" name="username" class="form-control" id="username" placeholder="username" />
+                  <div class="validation"></div>
                 </div>
               </div>
-            </div>
+
+              <div class="col-md-offset-2 col-md-8">
+                <div class="form-group">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="password" data-rule="password" />
+                  <div class="validation"></div>
+                </div>
+              </div>
+
+              <div class="col-md-offset-2 col-md-8">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="nama_user" id="nama_user" placeholder="Nama user" />
+                  <div class="validation"></div>
+                </div>
+              </div>
+              <input type="hidden" class="form-control" id="id_level" name="id_level" value=4 required>
+              <div class="form-group">
+                <div class="col-md-offset-2 col-md-8">
+                  <button type="submit" class="btn btn-theme btn-lg btn-block">Save</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="home-section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="section-heading">
+            <h2>Contact us</h2>
+            <div class="heading-line"></div>
+            <p>If you have any question or just want to say 'hello' to Alstar web studio please fill out form below and
+              we will be get in touch with you within 24 hours. </p>
           </div>
         </div>
       </div>
-    </div>
 
-      
-      </div>
-      </div>
-    </div>
-
-    </section>
-    <br>
-    <br>
-
-  <!-- Signup Section -->
-  <section id="signup" class="signup-section">
-    <div class="container">
       <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto text-center">
+        <div class="col-md-offset-2 col-md-8">
+          <div id="sendmessage">Your message has been sent. Thank you!</div>
+          <div id="errormessage"></div>
 
-          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-          <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+          <form action="" method="post" class="form-horizontal contactForm" role="form">
+            <div class="col-md-offset-2 col-md-8">
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validation"></div>
+              </div>
+            </div>
 
-          <form class="form-inline d-flex">
-            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
-            <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
+            <div class="col-md-offset-2 col-md-8">
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validation"></div>
+              </div>
+            </div>
+
+            <div class="col-md-offset-2 col-md-8">
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validation"></div>
+              </div>
+            </div>
+
+            <div class="col-md-offset-2 col-md-8">
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validation"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-offset-2 col-md-8">
+                <button type="submit" class="btn btn-theme btn-lg btn-block">Send message</button>
+              </div>
+            </div>
           </form>
 
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="contact-section bg-black">
+  <!-- Bottom widget -->
+  <section id="bottom-widget" class="home-section bg-white">
     <div class="container">
-
       <div class="row">
-
-        <div class="col-md-4 mb-3 mb-md-0">
-          <div class="card py-4 h-100">
-            <div class="card-body text-center">
-              <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Address</h4>
-              <hr class="my-4">
-              <div class="small text-black-50">Kampus 1 : Jl. Rancabolang Soekarno-Hatta No. 10B
-                <br>
-                Kampus 2 : Jl. Soekarno Hatta No.617/619 Bandung</div>
-            </div>
+        <div class="col-md-4">
+          <div class="contact-widget wow bounceInLeft">
+            <i class="fa fa-map-marker fa-4x"></i>
+            <h5>Main Office</h5>
+            <p>
+              Jl. Jatihandap No.35, Jatihandap, Kec. Mandalajati, Bandung, Jawa Barat 40193
+            </p>
           </div>
         </div>
+        <div class="col-md-4">
+          <div class="contact-widget wow bounceInUp">
+            <i class="fa fa-phone fa-4x"></i>
+            <h5>Call</h5>
+            <p>
+              (022) 7236124
 
-        <div class="col-md-4 mb-3 mb-md-0">
-          <div class="card py-4 h-100">
-            <div class="card-body text-center">
-              <i class="fas fa-envelope text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Email</h4>
-              <hr class="my-4">
-              <div class="small text-black-50">
-                <a href="#">Info@medikacom.sch.id</a>
-              </div>
-            </div>
+            </p>
           </div>
         </div>
-
-        <div class="col-md-4 mb-3 mb-md-0">
-          <div class="card py-4 h-100">
-            <div class="card-body text-center">
-              <i class="fas fa-mobile-alt text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Phone</h4>
-              <hr class="my-4">
-              <div class="small text-black-50">(022) 7314090</div>
-            </div>
+        <div class="col-md-4">
+          <div class="contact-widget wow bounceInRight">
+            <i class="fa fa-envelope fa-4x"></i>
+            <h5>Email us</h5>
+            <p>
+              Tirtakencanaalam@gmail.com
+            </p>
           </div>
         </div>
       </div>
-
-      <div class="social d-flex justify-content-center">
-        <a href="#" class="mx-2">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#" class="mx-2">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" class="mx-2">
-          <i class="fab fa-github"></i>
-        </a>
+      <div class="row mar-top30">
+        <div class="col-md-12">
+          <h5>We're on social networks</h5>
+          <ul class="social-network">
+            <li><a href="#">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span></a>
+            </li>
+            <li><a href="#">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-dribbble fa-stack-1x fa-inverse"></i>
+                </span></a>
+            </li>
+            <li><a href="#">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span></a>
+            </li>
+            <li><a href="#">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+                </span></a>
+            </li>
+            <li><a href="https://wa.me/6285721788805?text=Hai, PT.Tirta Kencana Alam , saya sedang mempunyai masalah , apakah anda bisa membantu? (ini APi Pesan Whatsapp)">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+                </span></a>
+            </li>
+          </ul>
+        </div>
       </div>
-
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black small text-center text-white-50">
+  <footer>
     <div class="container">
-      Copyright &copy; @DaniHamdani_2019
+      <div class="row">
+        <div class="col-md-12">
+          <p>Copyright &copy; Dani Hamdani.</p>
+          <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Alstar
+            -->
+            <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <!-- Plugin JavaScript -->
-  <script src="<?php echo base_url('asset_end_user/vendor/jquery/jquery.min.js') ; ?>"></script>
-  <script src="<?php echo base_url('asset_end_user/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
-  
-  <!-- Plugin JavaScript -->
-  <script src="<?php echo base_url('asset_end_user/vendor/jquery-easing/jquery.easing.min.js'); ?>"></script>
-  <script src="<?php echo base_url('asset_end_user/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
-  <script src="<?php echo base_url('asset_end_user/datatables/jquery.dataTables.min.js'); ?>"></script>
-  <!-- Contact form JavaScript -->
-  <script src="<?php echo base_url('asset_end_user/js/jqBootstrapValidation.js'); ?>"></script>
-  <script src="<?php echo base_url('asset_end_user/js/contact_me.js') ; ?>"></script>
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-  <!-- Custom scripts for this template -->
-  <script src="<?php echo base_url('asset_end_user/js/agency.min.js'); ?>"></script>
-  <script type="text/javascript"> 
-  $(document).ready(function(){
-  $('#dataTable').DataTable();
-  $('#dataTable1').DataTable();
-  $('#dataTable2').DataTable();
-  $('#dataTable3').DataTable();
-  });
+  <!-- js -->
+  <script src="<?= base_url('asset_end_user/js/jquery.js'); ?>"></script>
+  <script src="<?= base_url('asset_end_user/js/bootstrap.min.js'); ?>"></script>
+  <script src="<?= base_url('asset_end_user/js/wow.min.js'); ?>"></script>
+  <script src="<?= base_url('asset_end_user/js/jquery.scrollTo.min.js'); ?>"></script>
+  <script src="<?= base_url('asset_end_user/js/jquery.nav.js'); ?>"></script>
+  <script src="<?= base_url('asset_end_user/js/stellar.js'); ?>"></script>
+  <script src="<?= base_url('asset_end_user/js/jquery-3.3.1.js'); ?>"></script>
+  <script src="<?= base_url('asset_end_user/js/jquery.dataTables.min.js'); ?>"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="<?= base_url('asset_end_user/contactform/contactform.js') ?>"></script>
+  <script src="<?php echo base_url(); ?>assets/vendor/datatables/jquery.dataTables.js"></script>
+  <script src="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+  <!-- Template Custom Javascript File -->
+  <script src="<?= base_url('asset_end_user/js/custom.js'); ?>"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('table.display').DataTable();
+    });
   </script>
-    <script src="<?=base_url('vendor/chart.js/Chart.min.js');?>"></script>
-    <script src="<?=base_url('vendor/datatables/jquery.dataTables.js');?>"></script>
-    <script src="<?=base_url('vendor/datatables/dataTables.bootstrap4.js');?>"></script>
-  <!-- Custom scripts for this template -->
-  <script src="<?php echo base_url('asset_end_user/js/grayscale.min.js');?>"></script>
-  <script src="<?=base_url('js/demo/datatables-demo.js');?>"></script>
-  <script src="<?=base_url('js/demo/chart-area-demo.js');?>"></script>
-  
 </body>
 
 </html>

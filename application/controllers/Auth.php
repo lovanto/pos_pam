@@ -30,6 +30,7 @@ class Auth extends MY_Controller {
 			if($password == $user->password){ // Jika password yang diinput sama dengan password yang didatabase
 				$session = array(
 					'authenticated'=>true, // Buat session authenticated dengan value true
+					'id_user'=>$user->id_user,  // Buat session username
 					'username'=>$user->username,  // Buat session username
 					'nama_user'=>$user->nama_user, // Buat session nama
 					'id_level'=>$user->id_level // Buat session role
@@ -41,20 +42,15 @@ class Auth extends MY_Controller {
 					redirect('page/welcome'); // Redirect ke halaman home
 				}elseif ($user->id_level == 2) {
 					$this->session->set_userdata($session); // Buat session sesuai $session
-					redirect('page_waiter/welcome');
+					redirect('page_checker/welcome');
 					$user->id_level;
 					// die;
 				}elseif ($user->id_level == 3) {
 					$this->session->set_userdata($session); // Buat session sesuai $session
-					redirect('page_kasir/welcome');
-					$user->id_level;
-					// die;
-				}elseif ($user->id_level == 4) {
-					$this->session->set_userdata($session); // Buat session sesuai $session
 					redirect('page_owner/welcome');
 					$user->id_level;
 					// die;
-				}elseif ($user->id_level == 5) {
+				}elseif ($user->id_level == 4) {
 					$this->session->set_userdata($session); // Buat session sesuai $session
 					redirect('page_pelanggan/welcome');
 					$user->id_level;

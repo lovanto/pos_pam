@@ -45,6 +45,19 @@ class UserModel extends CI_Model {
 		$this->db->where('id_user', $this->input->post('id_user'));
 		$this->db->update('user', $data);
 	}
+	public function gantiPasswordNow(){
+		$data = [
+			'username' => htmlspecialchars($this->input->post('username', ENT_QUOTES, 'UTF-8', true)),
+			'password' => htmlspecialchars($this->input->post('password', ENT_QUOTES, 'UTF-8', true)),
+			'nama_user' => htmlspecialchars($this->input->post('nama_user', ENT_QUOTES, 'UTF-8', true)),
+			'id_level' => htmlspecialchars($this->input->post('id_level', ENT_QUOTES, 'UTF-8', true)),
+			'user_update' => htmlspecialchars($this->input->post('user_update', ENT_QUOTES, 'UTF-8', true)),
+			'update_date' => htmlspecialchars($this->input->post('update_date', ENT_QUOTES, 'UTF-8', true))
+		];
+		$data = $this->security->xss_clean($data);
+		$this->db->where('id_user', $this->input->post('id_user'));
+		$this->db->update('user', $data);
+	}
 	public function ubahDatapwd(){
 			$username   =  $this->input->post('username',true);
             $password   =  $this->input->post('password',true);
@@ -142,15 +155,15 @@ class UserModel extends CI_Model {
 			return $this->db->get('pembayaran')->result();
 		}else if($metode != NULL){
 			if($metode == "Harian"){
-				$this->db->where('update_date', $tanggal);
+				$this->db->where('tgl_bayar', $tanggal);
 				return $this->db->get('pembayaran')->result();
 			}else if($metode == "Mingguan"){
-				$this->db->where('update_date >=', $tanggal);
-				$this->db->where('update_date <=', date('Y-m-d', strtotime($tanggal. ' + 7 days')));
+				$this->db->where('tgl_bayar >=', $tanggal);
+				$this->db->where('tgl_bayar <=', date('Y-m-d', strtotime($tanggal. ' + 7 days')));
 				return $this->db->get('pembayaran')->result();
 			}else if($metode == "Bulanan"){
-				$this->db->where('update_date >=', $tanggal);
-				$this->db->where('update_date <=', date('Y-m-d', strtotime($tanggal. ' +30 days')));
+				$this->db->where('tgl_bayar >=', $tanggal);
+				$this->db->where('tgl_bayar <=', date('Y-m-d', strtotime($tanggal. ' +30 days')));
 				return $this->db->get('pembayaran')->result();
 			}else{
 				return "GOING WRONG!!";
@@ -679,6 +692,8 @@ class UserModel extends CI_Model {
  	 public function getAllDatapengaduan(){
 		return $this->db->get('pengaduan')->result_array();
 	}
+
+	
 	// Fungsi untuk melakukan proses upload file
 	public function upload(){
 		$config['upload_path'] = './images/';
@@ -740,6 +755,43 @@ class UserModel extends CI_Model {
 	public function insert_multiple($data){
 		$this->db->insert_batch('zona', $data);
 	}
+	#untuk penanganan
+	public function tambahDatapenanganan(){
+		$data = [
+			'no_penanganan' => htmlspecialchars($this->input->post('no_penanganan', ENT_QUOTES, 'UTF-8', true)),
+			'tgl' => htmlspecialchars($this->input->post('tgl', ENT_QUOTES, 'UTF-8', true)),
+			'no_pengaduan' => htmlspecialchars($this->input->post('no_pengaduan', ENT_QUOTES, 'UTF-8', true)),
+			'nama_pegawai' => htmlspecialchars($this->input->post('nama_pegawai', ENT_QUOTES, 'UTF-8', true)),
+			'biaya_perbaikan' => htmlspecialchars($this->input->post('biaya_perbaikan', ENT_QUOTES, 'UTF-8', true)),
+			'user_create' => htmlspecialchars($this->input->post('user_create', ENT_QUOTES, 'UTF-8', true)),
+			'create_date' => htmlspecialchars($this->input->post('create_date', ENT_QUOTES, 'UTF-8', true))
+		];
+		$data = $this->security->xss_clean($data);
+		return $this->db->insert('penanganan', $data);
+	}
+	public function hapusDatapenanganan($id){
+		$this->db->delete('penanganan', ['id' => $id]);
+	}
+	public function ubahDatapenanganan(){
+		$data = [
+			'no_penanganan' => htmlspecialchars($this->input->post('no_penanganan', ENT_QUOTES, 'UTF-8', true)),
+			'tgl' => htmlspecialchars($this->input->post('tgl', ENT_QUOTES, 'UTF-8', true)),
+			'no_pengaduan' => htmlspecialchars($this->input->post('no_pengaduan', ENT_QUOTES, 'UTF-8', true)),
+			'nama_pegawai' => htmlspecialchars($this->input->post('nama_pegawai', ENT_QUOTES, 'UTF-8', true)),
+			'biaya_perbaikan' => htmlspecialchars($this->input->post('biaya_perbaikan', ENT_QUOTES, 'UTF-8', true)),
+			'user_update' => htmlspecialchars($this->input->post('user_update', ENT_QUOTES, 'UTF-8', true)),
+			'update_date' => htmlspecialchars($this->input->post('update_date', ENT_QUOTES, 'UTF-8', true))
+		];
+		$data = $this->security->xss_clean($data);
+		$this->db->where('id', $this->input->post('id'));
+		$this->db->update('penanganan', $data);
+	}
+ 	public function getDatapenanganan($id){
+	 	return $this->db->get_where('penanganan', ['id'=>$id])->row_array();
+	}
+ 	 public function getAllDatapenanganan(){
+		return $this->db->get('penanganan')->result_array();
+	}
 	#import Pelanggan
 
 	public function view2(){
@@ -772,5 +824,47 @@ class UserModel extends CI_Model {
 	public function insert_multiple_pelanggan($data){
 		$this->db->insert_batch('pelanggan', $data);
 	}
+		//model untuk laporan periode pelanggan
+	public function cari_checker($keyword){
+	    $this->db->like('no_pelanggan', $keyword)->or_like('nama', $keyword)->or_like('zona', $keyword); //mencari data yang serupa dengan keyword
+	    return $this->db->get('checker')->result();
+	 }
+
+	public function laporan_checker_default()
+    {
+        return $this->db->get('checker')->result();
+    }
+    
+    public function laporan_berkala($tanggal1,$tanggal2)
+    {
+        $query="SELECT * from checker where tgl_cek between '$tanggal1' and '$tanggal2'";
+        return $this->db->query($query);
+    }
+    public function laporan_berkala1($tanggal1,$tanggal2)
+    {
+        $query="SELECT * from checker where tgl_cek between '$tanggal1' and '$tanggal2'";
+        return $this->db->query($query);
+    }
+    #pembayaran laporan periode
+	public function cari_pembayaran($keyword){
+	    $this->db->like('no_transaksi', $keyword)->or_like('no_pelanggan', $keyword)->or_like('nama', $keyword)->or_like('zona', $keyword)->or_like('kategori', $keyword); //mencari data yang serupa dengan keyword
+	    return $this->db->get('pembayaran')->result();
+	 }
+
+	public function laporan_pembayaran_default()
+    {
+        return $this->db->get('pembayaran')->result();
+    }
+    
+    public function laporan_berkala_pb($tanggal1,$tanggal2)
+    {
+        $query="SELECT * from pembayaran where tgl_bayar between '$tanggal1' and '$tanggal2'";
+        return $this->db->query($query);
+    }
+    public function laporan_berkala1_pb($tanggal1,$tanggal2)
+    {
+        $query="SELECT * from pembayaran where tgl_bayar between '$tanggal1' and '$tanggal2'";
+        return $this->db->query($query);
+    }
 }
 // select * from (nama_tabel) where (nama_field_yang_akan_difilter) between ‘tanggal awal’ and ‘tanggal akhir’

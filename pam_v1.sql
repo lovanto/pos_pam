@@ -34,28 +34,11 @@ CREATE TABLE `checker` (
   `user_update` varchar(50) DEFAULT NULL,
   `update_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `checker` */
 
-insert  into `checker`(`id`,`tgl_cek`,`no_pelanggan`,`nama`,`zona`,`tarif`,`pakai_meter`,`catat_meter`,`user_create`,`create_date`,`user_update`,`update_date`) values (2,'2020-01-11',29877367,'Wulan Maria Ulfah ST','Z1',50000,30,90,NULL,NULL,'dani hamdani','2020-02-07'),(3,'2020-01-18',29877367,'Wulan Maria Ulfah ST','Z1',50000,30,50,NULL,NULL,NULL,NULL),(4,'2020-01-02',8631255,'tukang aambekan','Z2',6000,10,12,NULL,NULL,NULL,NULL),(5,'2020-01-15',8631255,'tukang aambekan','Z2',6000,10,50,NULL,NULL,NULL,NULL),(6,'2020-01-01',912763271,'tukang sewot','Z3',6000,45,10,NULL,NULL,NULL,NULL),(7,'2020-01-16',912763271,'tukang sewot','Z3',6000,45,20,NULL,NULL,NULL,NULL),(8,'2020-01-25',29877367,'Wulan Maria Ulfah ST','Z1',50000,30,10,NULL,NULL,NULL,NULL),(9,'2020-02-07',29877367,'Wulan Maria Ulfah ST','Z1',50000,30,12,NULL,NULL,NULL,NULL),(10,'2020-02-08',9277812,'Dudi Hidayat','Z3',7500,120,80,'dani hamdani','2020-02-07',NULL,NULL),(11,'2020-02-29',9277812,'Dudi Hidayat','Z3',7500,40,12,'dani hamdani','2020-02-16',NULL,NULL),(12,'2020-02-20',8631255,'tukang aambekan','Z2',6000,10,2,'dani hamdani','2020-02-16',NULL,NULL),(13,'2020-03-22',290392190,'heru','Z3',20000,120,80,'dani hamdani','2020-03-05',NULL,NULL);
-
-/*Table structure for table `gambar` */
-
-DROP TABLE IF EXISTS `gambar`;
-
-CREATE TABLE `gambar` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `deskripsi` varchar(100) NOT NULL,
-  `nama_file` varchar(100) NOT NULL,
-  `ukuran_file` double NOT NULL,
-  `tipe_file` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
-/*Data for the table `gambar` */
-
-insert  into `gambar`(`id`,`deskripsi`,`nama_file`,`ukuran_file`,`tipe_file`) values (1,'aaa','3x4.jpg',299.69,'image/jpeg'),(2,'a','4x6.jpg',461,'image/jpeg');
+insert  into `checker`(`id`,`tgl_cek`,`no_pelanggan`,`nama`,`zona`,`tarif`,`pakai_meter`,`catat_meter`,`user_create`,`create_date`,`user_update`,`update_date`) values (2,'2020-01-11',29877367,'Wulan Maria Ulfah ST','Z1',50000,30,90,NULL,NULL,'dani hamdani','2020-02-07'),(3,'2020-01-18',29877367,'Wulan Maria Ulfah ST','Z1',50000,30,50,NULL,NULL,NULL,NULL),(4,'2020-01-02',8631255,'tukang aambekan','Z2',6000,10,12,NULL,NULL,NULL,NULL),(5,'2020-01-15',8631255,'tukang aambekan','Z2',6000,10,50,NULL,NULL,NULL,NULL),(6,'2020-01-01',912763271,'tukang sewot','Z3',6000,45,10,NULL,NULL,NULL,NULL),(7,'2020-01-16',912763271,'tukang sewot','Z3',6000,45,20,NULL,NULL,NULL,NULL),(8,'2020-01-25',29877367,'Wulan Maria Ulfah ST','Z1',50000,30,10,NULL,NULL,NULL,NULL),(9,'2020-02-07',29877367,'Wulan Maria Ulfah ST','Z1',50000,30,12,NULL,NULL,NULL,NULL),(10,'2020-02-08',9277812,'Dudi Hidayat','Z3',7500,120,80,'dani hamdani','2020-02-07',NULL,NULL),(11,'2020-02-29',9277812,'Dudi Hidayat','Z3',7500,40,12,'dani hamdani','2020-02-16',NULL,NULL),(12,'2020-02-20',8631255,'tukang aambekan','Z2',6000,10,2,'dani hamdani','2020-02-16',NULL,NULL);
 
 /*Table structure for table `level` */
 
@@ -155,81 +138,11 @@ CREATE TABLE `pembayaran` (
   `user_update` varchar(50) DEFAULT NULL,
   `update_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pembayaran` */
 
-insert  into `pembayaran`(`id`,`no_transaksi`,`tgl_bayar`,`no_pelanggan`,`nama`,`zona`,`kategori`,`tarif`,`catat_meter`,`total_bayar`,`biaya_admin`,`denda`,`grand_total`,`user_create`,`create_date`,`user_update`,`update_date`) values (1,1212,'2020-02-22',8631255,'tukang aambekan','Z2','',50000,2,100000,9000,900,109900,NULL,NULL,'dani hamdani','2020-02-21'),(2,9090,'2020-02-23',8631255,'tukang aambekan','Z2','',50000,2,100000,5000,9000,114000,NULL,NULL,NULL,NULL),(3,909011,'2020-02-29',8631255,'tukang aambekan','Z2','',6000,2,12000,5000,900,17900,NULL,NULL,NULL,NULL),(4,999,'2020-03-20',290392190,'heru','Z3','',20000,80,1600000,5000,0,1605000,'dani hamdani','2020-03-05',NULL,NULL);
-
-/*Table structure for table `penanganan` */
-
-DROP TABLE IF EXISTS `penanganan`;
-
-CREATE TABLE `penanganan` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `no_penanganan` int(11) NOT NULL,
-  `tgl` date NOT NULL,
-  `no_pengaduan` int(11) NOT NULL,
-  `nama_pegawai` varchar(50) NOT NULL,
-  `bukti_foto` char(100) NOT NULL,
-  `biaya_perbaikan` int(11) NOT NULL,
-  `user_create` varchar(50) DEFAULT NULL,
-  `create_date` date DEFAULT NULL,
-  `user_update` varchar(50) DEFAULT NULL,
-  `update_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `penanganan` */
-
-/*Table structure for table `pengaduan` */
-
-DROP TABLE IF EXISTS `pengaduan`;
-
-CREATE TABLE `pengaduan` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `no_pengaduan` int(11) NOT NULL,
-  `tgl` date NOT NULL,
-  `no_pelanggan` int(11) NOT NULL,
-  `keluhan` varchar(100) NOT NULL,
-  `foto` varchar(100) DEFAULT NULL,
-  `user_create` varchar(50) DEFAULT NULL,
-  `create_date` date DEFAULT NULL,
-  `user_update` varchar(50) DEFAULT NULL,
-  `update_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
-
-/*Data for the table `pengaduan` */
-
-insert  into `pengaduan`(`id`,`no_pengaduan`,`tgl`,`no_pelanggan`,`keluhan`,`foto`,`user_create`,`create_date`,`user_update`,`update_date`) values (9,11,'0000-00-00',290392190,'jarang jalan','',NULL,NULL,NULL,NULL),(10,44,'0000-00-00',9277812,'jarang jalan','',NULL,NULL,NULL,NULL),(11,3331,'0000-00-00',0,'q','default.jpg','dani hamdani','2020-03-09',NULL,NULL),(12,11,'0000-00-00',290392190,'jarang jalan','default.jpg','dani hamdani','2020-03-09',NULL,NULL);
-
-/*Table structure for table `tbl_galeri` */
-
-DROP TABLE IF EXISTS `tbl_galeri`;
-
-CREATE TABLE `tbl_galeri` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `judul` varchar(50) DEFAULT NULL,
-  `gambar` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
-/*Data for the table `tbl_galeri` */
-
-insert  into `tbl_galeri`(`id`,`judul`,`gambar`) values (1,'Gambar 1','5ef3427928f34c7bf2517b75670fa2ce.jpg'),(2,'Steve Jobs','9ca6c75707e602f24c484171d8a2662d.jpg'),(3,'Image 2','0599345835f97ff80d914b50bc5b74cf.png'),(4,'aaa','489583f0d3497f534fda61bd2213af5d.jpg');
-
-/*Table structure for table `tbl_user` */
-
-DROP TABLE IF EXISTS `tbl_user`;
-
-CREATE TABLE `tbl_user` (
-  `username` varchar(100) NOT NULL,
-  `photo` char(1) NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `tbl_user` */
+insert  into `pembayaran`(`id`,`no_transaksi`,`tgl_bayar`,`no_pelanggan`,`nama`,`zona`,`kategori`,`tarif`,`catat_meter`,`total_bayar`,`biaya_admin`,`denda`,`grand_total`,`user_create`,`create_date`,`user_update`,`update_date`) values (1,1212,'2020-02-22',8631255,'tukang aambekan','Z2','',50000,2,100000,9000,900,109900,NULL,NULL,'dani hamdani','2020-02-21'),(2,9090,'2020-02-23',8631255,'tukang aambekan','Z2','',50000,2,100000,5000,9000,114000,NULL,NULL,NULL,NULL),(3,909011,'2020-02-29',8631255,'tukang aambekan','Z2','',6000,2,12000,5000,900,17900,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `user` */
 
@@ -246,11 +159,11 @@ CREATE TABLE `user` (
   `user_update` varchar(50) NOT NULL,
   `update_date` date NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id_user`,`username`,`password`,`nama_user`,`id_level`,`user_create`,`create_date`,`user_update`,`update_date`) values (1,'dani','dani','dani hamdani',1,'','0000-00-00','','0000-00-00'),(7,'wulan','eulan','wulan maria ulfah',3,'','0000-00-00','','0000-00-00'),(8,'ouu','dani','juara',4,'','0000-00-00','dani hamdani','2020-01-24'),(9,'gila','dani','juara',2,'dani hamdani','2020-01-24','dani hamdani','2020-01-25'),(10,'Wulantok','wulan','Wulantok',1,'dani hamdani','2020-02-21','','0000-00-00'),(11,'zzz','dani','juara',3,'dani hamdani','2020-03-08','','0000-00-00');
+insert  into `user`(`id_user`,`username`,`password`,`nama_user`,`id_level`,`user_create`,`create_date`,`user_update`,`update_date`) values (1,'dani','dani','dani hamdani',1,'','0000-00-00','','0000-00-00'),(7,'wulan','eulan','wulan maria ulfah',3,'','0000-00-00','','0000-00-00'),(8,'ouu','dani','juara',4,'','0000-00-00','dani hamdani','2020-01-24'),(9,'gila','dani','juara',2,'dani hamdani','2020-01-24','dani hamdani','2020-01-25'),(10,'Wulantok','wulan','Wulantok',1,'dani hamdani','2020-02-21','','0000-00-00');
 
 /*Table structure for table `zona` */
 

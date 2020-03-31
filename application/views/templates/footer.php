@@ -59,6 +59,7 @@
   <script src="<?php echo base_url();?>assets/js/demo/chart-area-demo.js"></script>
   <script src="<?=base_url('assets/sweetalert2-8.5.0/sweetalert2.all.min.js');?>"></script>
   <script src="<?=base_url('assets/sweetalert2-8.5.0/myscript.js');?>"></script>
+  
   <script> 
       function myFunction() {
           window.print();

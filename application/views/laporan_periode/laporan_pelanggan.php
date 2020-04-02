@@ -33,7 +33,7 @@
       }
 
       body {
-        font-size: 11px;
+        font-size: 10.5px;
       }
     }
   </style>
@@ -44,7 +44,7 @@
     <div class="col-md-3" style="margin-left: 150px;">
       <img src="<?= base_url('assets/img/logo.png'); ?>" width="100px">
     </div>
-    <div class="col-md-6" style="margin-left: 10px;">
+    <div class="col-md-5" style="margin-left: 10px;">
       <div style="font-size: 30px;">PT. Tirta Kencana Alam</div>
       <div style="font-size: 20px;">Jl. Mandalaraya No 35, Bandung</div>
       <div style="font-size: 20px;">Telp. (022)-7326134</div>

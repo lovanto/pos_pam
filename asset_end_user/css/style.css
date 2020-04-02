@@ -90,6 +90,7 @@ button {
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
+    color: #ffffff;
 }
 
 button.navbar-toggle {

@@ -20,4 +20,5 @@ public function __construct(){
     // $this->session->set_flashdata('flash_sukses', 'BERHASIL ditambahkan');
 	  // redirect('main');
   }
+  
 }

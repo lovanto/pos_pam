@@ -3,6 +3,13 @@ a:hover {
     color: #00c1c1;
 }
 
+@media (max-width: 576px) {
+    a,
+    a:hover {
+        color: #fff;
+    }
+}
+
 a.ssa {
     color: #fff;
 }

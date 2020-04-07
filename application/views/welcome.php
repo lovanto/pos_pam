@@ -1,3 +1,9 @@
+<div class="flash-data1" data-flashdata="<?= $this->session->flashdata('flash_sukses'); ?>"></div>
+<div class="flash-data2" data-flashdata="<?= $this->session->flashdata('flash_gagal'); ?>"></div>
+<?php
+$this->session->userdata('authenticated')
+//$this->session->set_userdata($session);
+?>
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
@@ -79,6 +85,11 @@
   <div class="card mb-3">
     <div class="card-header">
       <h1>Selamat datang <?= $this->session->userdata('nama_user'); ?></h1>
+      <?php
+        
+    $save  = 'C:/xampp7/htdocs/pam_air/backup_data/'; // dir name backup output destination
+    echo $save;
+      ?>
       <h5>Anda masuk sebagai <i>
           <?php
           if ($this->session->userdata('id_level') == 1) {

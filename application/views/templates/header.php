@@ -152,7 +152,17 @@
                 <a class="dropdown-item fa fa-envelope" href="<?php echo base_url('page/laporan_checker'); ?>">Laporan Cek </a>
                 <a class="dropdown-item fa fa-fw fa-folder" href="<?php echo base_url('page/laporan_pembayaran'); ?>">Laporan Pembayaran</a>
             </div>
-      </li>   
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url('backup');?>">
+          <i class="fas fa-fw fa-save"></i>
+          <span>Backup</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url('backup/restore');?>">
+          <i class="fas fa-fw fa-save"></i>
+          <span>Restore</span></a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url('auth/logout');?>">
           <i class="fas fa-fw fa-user"></i>

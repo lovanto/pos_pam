@@ -87,8 +87,8 @@ $this->session->userdata('authenticated')
                     <td class="text-middle"><?= $s['tgl']; ?></td>
                     <td class="text-middle"><?= $s['no_pelanggan']; ?></td>
                     <td class="text-middle"><?= $s['keluhan']; ?></td>
-                    <td class="text-middle"><?= $s['bukti_foto']; ?></td>
-                    <td class="text-middle"><img src='../images/<?= $s['nama_file']; ?>' width='100' height='100'></td>
+                    <td class="text-middle"><?= $s['foto']; ?></td>
+                    <td class="text-middle"><img src='../images/<?= $s['foto']; ?>' width='100' height='100'></td>
                     <td class="text-middle"><?= $s['user_create']; ?></td>
                     <td class="text-middle"><?= $s['create_date']; ?></td>
                     <td class="text-middle"><?= $s['user_update']; ?></td>

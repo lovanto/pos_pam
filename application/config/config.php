@@ -24,7 +24,7 @@ date_default_timezone_set("Asia/Jakarta");
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = "https://pos-pam.herokuapp.com/welcome";
+$config['base_url'] = "https://pos-pam.herokuapp.com";
 $config['base_url'] .= preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME'])).'/';
 
 /*

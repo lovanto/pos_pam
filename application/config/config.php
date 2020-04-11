@@ -36,7 +36,7 @@ $config['base_url'] = "https://pos-pam.herokuapp.com";
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'https://pos-pam.herokuapp.com/welcome';
+$config['index_page'] = '';
 $config['composer_autoload'] = "vendor/autoload.php";
 
 /*

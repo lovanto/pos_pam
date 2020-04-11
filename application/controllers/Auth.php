@@ -39,7 +39,7 @@ class Auth extends MY_Controller {
 				// die;
 				if ($user->id_level == 1) {
 					$this->session->set_userdata($session); // Buat session sesuai $session
-					redirect('page/welcome'); // Redirect ke halaman home
+					redirect(base_url('page/welcome')); // Redirect ke halaman home
 				}elseif ($user->id_level == 2) {
 					$this->session->set_userdata($session); // Buat session sesuai $session
 					redirect('page_checker/welcome');

@@ -29,7 +29,7 @@
                        onblur="if (this.value == '') {this.value = 'Password';}"/>
                 <input type="submit" value="LOGIN"/>
                 <!--  <p>Not a member? <a href="#">Signup now >></a> </p> -->
-                <a href="<?= base_url('welcome');?>">Kembali ke home</a>
+                <a href="<?= base_url('main');?>">Kembali ke home</a>
             </form>
         </div>
     </div>

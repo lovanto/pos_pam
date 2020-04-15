@@ -18,8 +18,7 @@ public function __construct(){
 	public function pengguna_tambah(){
     $this->UserModel->tambahDatapengguna();
     // $this->session->set_flashdata('flash_sukses', 'BERHASIL ditambahkan');
-    // redirect('main');
-    //
+	  // redirect('main');
   }
   
 }

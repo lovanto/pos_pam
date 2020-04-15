@@ -86,9 +86,6 @@ $this->session->userdata('authenticated')
     <div class="card-header">
       <h1>Selamat datang <?= $this->session->userdata('nama_user'); ?></h1>
       <?php
-        
-    $save  = 'C:/xampp7/htdocs/pam_air/backup_data/'; // dir name backup output destination
-    echo $save;
       ?>
       <h5>Anda masuk sebagai <i>
           <?php

@@ -22,4 +22,4 @@ This program was created to deal with the problems in recording that occur in th
  4. And then open it on browser [click here](http://localhost/pos_pam) if still default setting
 
 ## Notes
-Gunakan program ini sebagai referensi bukan untuk plagiarisme.
+Use this program as a reference not for plagiarism.

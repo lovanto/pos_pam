@@ -81,7 +81,7 @@ $this->session->userdata('authenticated')
       </div>
     </div>
   </div>
-  <!-- Area Chart Example-->
+  
   <div class="card mb-3">
     <div class="card-header">
       <h1>Selamat datang <?= $this->session->userdata('nama_user'); ?></h1>

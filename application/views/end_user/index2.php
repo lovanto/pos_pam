@@ -118,20 +118,20 @@
                 </div>
               </div>
             </div>
-            </div>
-
-            <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon fa fa-angle-left" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-
-            <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
-              <span class="carousel-control-next-icon fa fa-angle-right" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-
           </div>
+
+          <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon fa fa-angle-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+
+          <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon fa fa-angle-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+
         </div>
+      </div>
   </section><!-- #intro -->
 
   <!-- About -->

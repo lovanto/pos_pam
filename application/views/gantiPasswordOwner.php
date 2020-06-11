@@ -10,7 +10,7 @@ $this->session->userdata('authenticated')
     <div class="card">
       <div class="card-header bg-gray-500">Form Ganti Password</div>
       <div class="card-body">
-        <form method="post" accept-charset="utf-8" enctype="multipart/form-data" action="<?= base_url('page/gantiPasswordNow'); ?>">
+        <form method="post" accept-charset="utf-8" enctype="multipart/form-data" action="<?= base_url('page_owner/gantiPasswordNow'); ?>">
           <div class="form-group">
             <label>Username</label>
             <input type="text" class="form-control form-control-user" value="<?= $this->session->userdata('username'); ?>" id="username" name="username" placeholder="Username" readonly>

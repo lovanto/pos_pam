@@ -18,30 +18,8 @@
                 <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Masukan Password Baru" required>
                 <label>Nama</label>
                 <input type="text" class="form-control form-control-user" value="<?= $this->session->userdata('nama_user'); ?>" id="nama_user" name="nama_user" placeholder="nama User" readonly>
-                <label>Role-(hak-akses)</label>
-                <select name="id_level" class="form-control form-control-user" readonly>
-                  <option value="-">-pilihan-</option>
-                  <option value="1" <?php
-                                    if ($this->session->userdata('id_level') == 1) {
-                                      echo "selected";
-                                    }
-                                    ?>>Admin</option>
-                  <option value="2" <?php
-                                    if ($this->session->userdata('id_level') == 2) {
-                                      echo "selected";
-                                    }
-                                    ?>>Checker</option>
-                  <option value="3" <?php
-                                    if ($this->session->userdata('id_level') == 3) {
-                                      echo "selected";
-                                    }
-                                    ?>>Owner</option>
-                  <option value="4" <?php
-                                    if ($this->session->userdata('id_level') == 4) {
-                                      echo "selected";
-                                    }
-                                    ?>>Pelanggan</option>
-                </select>
+                <!-- <label>Role-(hak-akses)</label> -->
+                <input type="hidden" class="form-control form-control-user" value="<?= $this->session->userdata('id_level'); ?>" id="id_level" name="id_level" placeholder="nama User" readonly>
                 <input type="hidden" class="form-control" id="id_user" name="id_user" value="<?= $this->session->userdata('id_user'); ?>" required>
                 <input type="hidden" class="form-control" id="user_update" name="user_update" value="<?= $this->session->userdata('nama_user'); ?>" required>
                 <input name="update_date" type="hidden" id="update_date" value=" <?php echo date('Y-m-d'); ?> " readonly>

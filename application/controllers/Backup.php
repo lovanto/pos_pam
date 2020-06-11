@@ -27,7 +27,7 @@ class Backup extends MY_Controller
 
 		$backup = $this->dbutil->backup($prefs);
 		$nameData = 'mybackup.sql'; // file name
-		$save  = FCPATH.'backup_data/' . $nameData; // dir name backup output destination
+		$save  = FCPATH . 'backup_data/' . $nameData; // dir name backup output destination
 
 		$this->load->helper('file');
 		write_file($save, $backup);
@@ -39,7 +39,7 @@ class Backup extends MY_Controller
 
 	public function restore()
 	{
-		$isi_file = file_get_contents(FCPATH.'backup_data/mybackup.sql');
+		$isi_file = file_get_contents(FCPATH . 'backup_data/mybackup.sql');
 		$string_query = rtrim($isi_file, "\n;");
 		$array_query = explode(";", $string_query);
 		foreach ($array_query as $query) {

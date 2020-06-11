@@ -105,3 +105,19 @@ $this->session->userdata('authenticated')
       <h4>Halaman ini hanya bisa diakses setelah login.</h4>
     </div>
   </div>
+  <!-- Area Chart Example-->
+  <?php
+  if ($this->session->userdata('id_level') == 1) {
+  ?>
+    <div class="card mb-3">
+      <div class="card-header">
+        <h4>Untuk Penggunaan Backup dan Restore</h4>
+        <h6>
+          1. Simpan data yang diperoleh menu BACKUP ke dalam folder "backup_data", <br>
+          2. Jalankan menu restore.
+        </h6>
+      </div>
+    </div>
+  <?php
+  }
+  ?>

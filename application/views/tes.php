@@ -1,5 +1,5 @@
-<?=$this->session->flashdata('msg') ?>
-<form action="<?=base_url('welcome/tambah_aksi') ?>" method="post" enctype="multipart/form-data">
+<?= $this->session->flashdata('msg') ?>
+<form action="<?= base_url('welcome/tambah_aksi') ?>" method="post" enctype="multipart/form-data">
 	<table>
 		<tr>
 			<td>Username</td>
@@ -24,17 +24,19 @@
 	</thead>
 	<tbody>
 		<tr>
-		<?php
-		$no = 1;
-		foreach ($user as $row): ?>
-			<tr>
-				<td><?$no++?></td>
-				<td><?=$row->username?></td>
-				<td>
-					<img src="<?=base_url('assets/images/'.$row->photo)?>" style="width:300px; height:150">
-				</td>
-			</tr>
-		<?php endforeach; ?>
+			<?php
+			$no = 1;
+			foreach ($user as $row) : ?>
+		<tr>
+			<td>
+				<?$no++?>
+			</td>
+			<td><?= $row->username ?></td>
+			<td>
+				<img src="<?= base_url('assets/images/' . $row->photo) ?>" style="width:300px; height:150">
+			</td>
 		</tr>
+	<?php endforeach; ?>
+	</tr>
 	</tbody>
 </table>

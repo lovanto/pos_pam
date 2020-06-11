@@ -45,9 +45,7 @@
         <ul class="nav navbar-nav">
           <li class="current"><a class="ssa" href="#intro">Home</a></li>
           <li><a class="ssa" href="#contact">Contact</a></li>
-          <li><a class="ssa" href="#contact">Daftar Pelanggan Baru</a></li>
           <li><a class="navigation collapse navbar-collapse navbar-ex1-collapse" href="#portfolio">Works</a></li>
-
           <li class="nav-item dropdown">
             <a class="ssa" class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-fw fa-inverse"></i>
